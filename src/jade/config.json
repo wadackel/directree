@@ -1,0 +1,7 @@
+{
+  "url": "http://example.com",
+  "title": "Directree",
+  "description": "Directreeはインデントで表した階層をツリー状に変換するWebアプリです",
+  "keywords": "ディレクトリー, インデント, ジェネレーター, Webアプリ",
+  "ogImage": "http://example.com"
+}

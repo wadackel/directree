@@ -1,0 +1,31 @@
+$iconmoon-fonts-path:"../fonts" !default;
+
+
+@font-face {
+  font-family:"icomoon";
+  src:url("#{$iconmoon-fonts-path}/icomoon.eot?-c9ioj9");
+  src:url("#{$iconmoon-fonts-path}/icomoon.eot?#iefix-c9ioj9") format("embedded-opentype"),
+    url("#{$iconmoon-fonts-path}/icomoon.ttf?-c9ioj9") format("truetype"),
+    url("#{$iconmoon-fonts-path}/icomoon.woff?-c9ioj9") format("woff"),
+    url("#{$iconmoon-fonts-path}/icomoon.svg?-c9ioj9#icomoon") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+
+
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family:"icomoon";
+  font-weight:normal;
+  font-style:normal;
+  font-variant:normal;
+  line-height:1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-transform:none;
+  speak:none;
+}
+
+.icon-hatena:before {
+  content:"\e600";
+}

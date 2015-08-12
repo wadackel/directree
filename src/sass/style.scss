@@ -1,0 +1,324 @@
+@import url(http://fonts.googleapis.com/css?family=Courgette);
+@import "normalize";
+@import "font-awesome/font-awesome";
+@import "iconmoon";
+
+
+//== Variables
+$color-primary:#272822;
+$color-accent:#0bcd74;
+
+$color-link:#fff;
+$color-link-hover:darken($color-link, 15%);
+$color-link-active:darken($color-link-hover, 10%);
+
+$color-sns-twitter:#00aced;
+$color-sns-facebook:#305097;
+$color-sns-hatena:#00a4de;
+$color-sns-pocket:#ef4056;
+$color-sns-github:#4078c0;
+
+$transition-duration:.25s;
+$transition-easing:ease-in-out;
+
+$font-base:"Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
+$font-accent:"Courgette",cursive;
+
+
+//== Mixins
+@mixin e($name) {
+  &__#{$name} {
+    @content;
+  }
+}
+
+@mixin m($name) {
+  &--#{$name} {
+    @content;
+  }
+}
+
+@mixin font-smooth($smooth: true) {
+  @if $smooth == true {
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  } @else {
+    -webkit-font-smoothing:subpixel-antialiased;
+    -moz-osx-font-smoothing:auto;
+  }
+}
+
+
+//== Utilities
+.clearfix {
+  zoom:1;
+  &:after {
+    content:"";
+    clear:both;
+    display:block;
+  }
+}
+
+
+//== Base
+* {
+  box-sizing:border-box;
+}
+
+body,
+html {
+  @include font-smooth;
+  width:100%;
+  height:100%;
+  background:$color-primary;
+  font-size:14px;
+  font-family:$font-base;
+}
+
+a {
+  color:$color-link;
+  text-decoration:none;
+  &:hover {
+    color:$color-link-hover;
+  }
+  &:active {
+    color:$color-link-active;
+  }
+}
+
+::selection {
+  background:#000;
+}
+
+::-moz-selection {
+  background:#000;
+}
+
+::-webkit-scrollbar {
+  width:8px;
+  color:#8f908a;
+  background:darken(#2f3129, 5%);
+  z-index:10;
+  &:horizontal {
+    height:6px;
+  }
+}
+
+::-webkit-scrollbar-track {
+  border-radius:3px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius:3px;
+  background:darken(#2f3129, 8%);
+}
+
+
+
+//== Components
+.container {
+  position:relative;
+  display:table;
+  table-layout:fixed;
+  width:100%;
+  height:100%;
+
+  @include e(row) {
+    display:table-row;
+    width:100%;
+  }
+
+  @include e(col) {
+    float:left;
+    width:50%;
+  }
+}
+
+.header {
+  position:relative;
+  z-index:100;
+  display:table-row;
+  height:120px;
+  background:darken($color-primary, 4%);
+  color:#fff;
+  box-shadow:0 1px 4px rgba(0, 0, 0, .3);
+
+  @include e(inner) {
+    @extend .clearfix;
+    display:table-cell;
+    vertical-align:middle;
+  }
+}
+
+.brand {
+  float:left;
+  margin:0;
+  padding:0 30px;
+  letter-spacing:.05em;
+
+  @include e(logo) {
+    margin:0 0 5px 0;
+    font-size:2.8rem;
+    font-family:$font-accent;
+  }
+
+  @include e(text) {
+    margin:0;
+    font-size:.8rem;
+  }
+}
+
+.shares {
+  float:right;
+  margin:0 30px 0 0;
+  padding:15px 0 0 0;
+  font-size:1.5rem;
+
+  @include e(item) {
+    float:left;
+    list-style:none;
+    position:relative;
+    margin-left:5px;
+
+    @include m(twitter) {
+      @extend .shares__item;
+      .shares__link:hover {
+        color:$color-sns-twitter;
+      }
+    }
+
+    @include m(facebook) {
+      @extend .shares__item;
+      .shares__link:hover {
+        color:$color-sns-facebook;
+      }
+    }
+
+    @include m(hatena) {
+      @extend .shares__item;
+      .shares__link:hover {
+        color:$color-sns-hatena;
+      }
+    }
+
+    @include m(pocket) {
+      @extend .shares__item;
+      .shares__link:hover {
+        color:$color-sns-pocket;
+      }
+    }
+
+    @include m(github) {
+      @extend .shares__item;
+      .shares__link:hover {
+        color:$color-sns-github;
+      }
+    }
+  }
+
+  @include e(link) {
+    display:block;
+    width:40px;
+    height:40px;
+    text-align:center;
+    line-height:40px;
+    transition:color $transition-duration $transition-easing;
+  }
+
+  @include e(popup) {
+    position:absolute;
+    bottom:-30px;
+    right:0;
+    z-index:10;
+    width:auto;
+    min-height:20px;
+    padding:.6em 1.2em;
+    border-radius:3px;
+    background:#000;
+    box-shadow:0 2px 4px rgba(0, 0, 0, .7);
+    opacity:0;
+    visibility:hidden;
+    font-size:.8rem;
+    text-align:center;
+    white-space:nowrap;
+    transform:translateY(5px);
+    transition:all $transition-duration $transition-easing;
+    &:after {
+      content:"";
+      position:absolute;
+      top:-5px;
+      right:15px;
+      display:block;
+      width:0;
+      height:0;
+      border-width:5px;
+      border-style:solid;
+      border-color:#000;
+      border-right-color:transparent;
+      border-left-color:transparent;
+      border-top-width:0;
+      border-top-color:transparent;
+    }
+
+    .shares__item:hover & {
+      visibility:visible;
+      opacity:1;
+      transform:translateY(0);
+    }
+  }
+}
+
+.editor-titles {
+}
+
+.editor-title {
+  padding:8px 30px;
+  margin:0;
+  background:lighten($color-primary, 2%);
+  font-size:.9rem;
+  border-top:1px solid $color-accent;
+  border-bottom:1px solid darken($color-primary, 2%);
+  color:#fff;
+  text-align:right;
+  line-height:1;
+
+  @include m(input) {
+    @extend .editor-title;
+    padding-right:0;
+  }
+
+  @include m(output) {
+    @extend .editor-title;
+  }
+}
+
+.editors {
+  height:100%;
+}
+
+.editor {
+  @include font-smooth(false);
+  position:relative;
+  height:100%;
+  font-size:15px !important;
+  line-height:1.6 !important;
+
+  @include m(input) {
+    @extend .editor;
+  }
+
+  @include m(output) {
+    @extend .editor;
+  }
+}
+
+.copyright {
+  position:absolute;
+  bottom:10px;
+  right:10px;
+  z-index:100;
+  margin:0;
+  text-align:right;
+  font-size:.8rem;
+  color:#fff;
+}
