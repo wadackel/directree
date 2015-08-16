@@ -48,6 +48,12 @@ $font-accent:"Courgette",cursive;
   }
 }
 
+@mixin mq-small(){
+  @media (max-width: 560px) {
+    @content;
+  }
+}
+
 
 //== Utilities
 .clearfix {
@@ -73,6 +79,10 @@ html {
   background:$color-primary;
   font-size:14px;
   font-family:$font-base;
+}
+
+body {
+  min-width:320px;
 }
 
 a {
@@ -148,6 +158,24 @@ a {
     display:table-cell;
     vertical-align:middle;
   }
+
+  @include mq-small {
+    display:block;
+    height:auto;
+    padding:15px 0;
+    @include e(inner) {
+      display:block;
+      text-align:center;
+    }
+    .brand,
+    .shares {
+      float:none;
+      margin-right:0;
+      margin-left:0;
+      padding-right:15px;
+      padding-left:15px;
+    }
+  }
 }
 
 .brand {
@@ -172,13 +200,14 @@ a {
   float:right;
   margin:0 30px 0 0;
   padding:15px 0 0 0;
-  font-size:1.5rem;
+  font-size:0;
 
   @include e(item) {
-    float:left;
-    list-style:none;
     position:relative;
+    display:inline-block;
     margin-left:5px;
+    list-style:none;
+    font-size:1.5rem;
 
     @include m(twitter) {
       @extend .shares__item;
@@ -266,6 +295,11 @@ a {
       transform:translateY(0);
     }
   }
+
+  @include mq-small {
+    @include e(item) {
+    }
+  }
 }
 
 .editor-titles {
@@ -291,6 +325,7 @@ a {
     @extend .editor-title;
   }
 }
+
 
 .editors {
   height:100%;
