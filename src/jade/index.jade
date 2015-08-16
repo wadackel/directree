@@ -36,19 +36,23 @@ html
             h2.brand__text Indent text to Tree text.
           ul.shares
             li.shares__item--twitter
-              a.shares__link(href="#"): i.fa.fa-twitter
+              a.shares__link(data-share="twitter", href="http://twitter.com/intent/tweet?text=" + title + "&url=" + url, onclick="window.open(encodeURI(decodeURI(this.href)), 'tweetwindow', 'width=550, height=450, personalbar=0, toolbar=0, scrollbars=1, resizable=1' ); return false;", target="_blank")
+                i.fa.fa-twitter
               div.shares__popup Tweet!
 
             li.shares__item--facebook
-              a.shares__link(href="#"): i.fa.fa-facebook
+              a.shares__link(data-share="facebook", href="http://www.facebook.com/share.php?u=" + url, onclick="window.open(this.href, 'facebookwindow', 'width=550, height=450,personalbar=0,toolbar=0,scrollbars=1,resizable=1'); return false;")
+                i.fa.fa-facebook
               div.shares__popup Share!
 
             li.shares__item--hatena
-              a.shares__link(href="#"): i.icon-hatena
+              a.shares__link(data-share="hatena", href="http://b.hatena.ne.jp/add?mode=confirm&url=" + url + "&title=" + title, onclick="window.open(this.href, 'hatenawindow', 'width=500, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;")
+                i.icon-hatena
               div.shares__popup Bookmark!
 
             li.shares__item--pocket
-              a.shares__link(href="#"): i.fa.fa-get-pocket
+              a.shares__link(data-share="pocket", href="http://getpocket.com/edit?url=" +url + "&title=" + title, onclick="window.open(this.href, 'pocketwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;")
+                i.fa.fa-get-pocket
               div.shares__popup Save!
 
             li.shares__item--github
@@ -65,5 +69,10 @@ html
     
       p.copyright Copyright Directree &copy; All Right Reserved.
 
+
+    div.drop-info
+      div.drop-info__body
+        h3.drop-info__title Drop me!
+        p.drop-info__text Supports single directory.
 
     script(type="text/javascript", src="./js/app.bundle.js")
