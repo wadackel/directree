@@ -3,10 +3,12 @@ Directree
 
 Indent text to Tree text.
 
-[see Playground](http://example.com)
+[see playground](http://directree.net/)
 
 
-## Screenshots
+## Screenshot
+
+![image](https://raw.githubusercontent.com/tsuyoshiwada/directree/images/image.png)
 
 
 ## Development
@@ -19,6 +21,7 @@ $ gulp
 ```
 
 access to [http://localhost:3000](http://localhost:3000).
+
 
 ## Change log
 
