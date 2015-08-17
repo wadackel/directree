@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "brace": "^0.5.1",
-    "indent2obj": "0.0.1",
+    "indent2obj": "0.0.2",
     "jquery": "^2.1.4",
     "store": "^1.3.17"
   }

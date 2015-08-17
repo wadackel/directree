@@ -54,19 +54,17 @@ export default class DroppableField extends EventEmitter {
     this.cancelEvents(e);
     this.el.className = "";
 
-    let {dataTransfer} = e;
-    let {items} = dataTransfer;
+    let {items} = e.dataTransfer;
 
-    if( items.length === 1 ){
-      let item = items[0];
-      let entry = item.getAsEntry ? item.getAsEntry() : item.webkitGetAsEntry();
-      this.entryToNode(entry).then((nodes) => {
-        this.emit("dropped", nodes);
-      });
+    if( !items ) return alert("お使いのブラウザではディレクトリのドロップをサポートしていません。ブラウザをChromeに変えて再度お試し下さい。");
+    if( items.length !== 1 ) return alert("単一のディレクトリをドロップして下さい。");
 
-    }else{
-      alert("複数のファイルには対応していません。");
-    }
+    let item = items[0];
+    let entry = item.getAsEntry ? item.getAsEntry() : item.webkitGetAsEntry();
+    console.log(item, entry);
+    this.entryToNode(entry).then((nodes) => {
+      this.emit("dropped", nodes);
+    });
   }
 
 
