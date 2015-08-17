@@ -61,7 +61,6 @@ export default class DroppableField extends EventEmitter {
 
     let item = items[0];
     let entry = item.getAsEntry ? item.getAsEntry() : item.webkitGetAsEntry();
-    console.log(item, entry);
     this.entryToNode(entry).then((nodes) => {
       this.emit("dropped", nodes);
     });
