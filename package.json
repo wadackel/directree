@@ -29,6 +29,7 @@
     "watchify": "^3.6.1"
   },
   "dependencies": {
+    "brace": "^0.7.0",
     "react": "^0.14.3",
     "react-ace": "^2.8.0",
     "react-dom": "^0.14.3"
