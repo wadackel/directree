@@ -3,6 +3,8 @@ import brace from "brace"
 import "brace/mode/text"
 import "brace/theme/monokai"
 
+const CURSOR_POS = 1;
+
 export default class Editor extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
@@ -35,7 +37,7 @@ export default class Editor extends Component {
 
     editor.setTheme("ace/theme/monokai");
     editor.renderer.setPadding(10);
-    editor.setValue(value, 1);
+    editor.setValue(value, CURSOR_POS);
     editor.setOption("readOnly", readOnly);
     editor.setOption("tabSize", tabSize);
     session.setMode("ace/mode/text");
@@ -46,6 +48,7 @@ export default class Editor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     const oldProps = this.props;
 
     if (nextProps.readOnly !== oldProps.readOnly) {
@@ -56,9 +59,9 @@ export default class Editor extends Component {
       this.editor.setOption("tabSize", nextProps.tabSize);
     }
 
-    if (this.editor.getValue() !== oldProps.value) {
+    if (this.editor.getValue() !== nextProps.value) {
       this.silent = true;
-      this.editor.setValue(nextProps.value);
+      this.editor.setValue(nextProps.value, CURSOR_POS);
       this.silent = false;
     }
   }

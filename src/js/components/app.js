@@ -4,10 +4,13 @@ import Header from "./header"
 import Editor from "./editor"
 
 export default class App extends Component {
+  componentDidMount() {
+    this.props.initializeValue();
+  }
+
   render() {
     const {changeValue, editor} = this.props;
     const {value, tabSize} = editor;
-    console.log(editor, value);
 
     return (
       <div className="container">
@@ -23,6 +26,7 @@ export default class App extends Component {
             value={value}
             tabSize={tabSize}
             readOnly={false}
+            onChange={text => changeValue(text)}
           />
           <Editor
             name="output-editor"
