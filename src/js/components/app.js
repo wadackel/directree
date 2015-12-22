@@ -1,15 +1,14 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
-import indent2obj from "indent2obj"
-import Header from "./components/header"
-import Editor from "./components/editor"
+import Header from "./header"
+import Editor from "./editor"
 
-class App extends Component {
-  handleEditorChange(value) {
-    console.log(indent2obj(value));
-  }
-
+export default class App extends Component {
   render() {
+    const {changeValue, editor} = this.props;
+    const {value, tabSize} = editor;
+    console.log(editor, value);
+
     return (
       <div className="container">
         <Header />
@@ -21,12 +20,14 @@ class App extends Component {
           <Editor
             name="input-editor"
             className="editor--input container__col"
+            value={value}
+            tabSize={tabSize}
             readOnly={false}
-            onChange={::this.handleEditorChange}
           />
           <Editor
             name="output-editor"
             className="editor--output container__col"
+            tabSize={tabSize}
             readOnly={true}
           />
         </div>
@@ -35,9 +36,3 @@ class App extends Component {
     );
   }
 }
-
-
-ReactDOM.render(
-  <App />,
-  document.getElementById("app")
-);

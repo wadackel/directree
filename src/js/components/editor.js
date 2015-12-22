@@ -8,7 +8,8 @@ export default class Editor extends Component {
     name: PropTypes.string.isRequired,
     className: PropTypes.string,
     value: PropTypes.string,
-    readOnly: PropTypes.bool.isRequired,
+    tabSize: PropTypes.number,
+    readOnly: PropTypes.bool,
     onChange: PropTypes.func
   }
 
@@ -16,6 +17,7 @@ export default class Editor extends Component {
     name: "ace-editor",
     className: "ace-editor",
     value: "",
+    tabSize: 2,
     readOnly: true
   }
 
@@ -24,6 +26,7 @@ export default class Editor extends Component {
       name,
       value,
       readOnly,
+      tabSize,
       onChange
     } = this.props;
 
@@ -32,9 +35,10 @@ export default class Editor extends Component {
 
     editor.setTheme("ace/theme/monokai");
     editor.renderer.setPadding(10);
+    editor.setValue(value, 1);
     editor.setOption("readOnly", readOnly);
+    editor.setOption("tabSize", tabSize);
     session.setMode("ace/mode/text");
-    session.setTabSize(2);
 
     editor.on("change", ::this.handleChange);
 
@@ -43,9 +47,13 @@ export default class Editor extends Component {
 
   componentWillReceiveProps(nextProps) {
     const oldProps = this.props;
-    
+
     if (nextProps.readOnly !== oldProps.readOnly) {
       this.editor.setOption("readOnly", nextProps.readOnly);
+    }
+
+    if (nextProps.tabSize !== oldProps.tabSize) {
+      this.editor.setOption("tabSize", nextProps.tabSize);
     }
 
     if (this.editor.getValue() !== oldProps.value) {
