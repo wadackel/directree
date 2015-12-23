@@ -1,4 +1,29 @@
+import indent2obj from "indent2obj"
+
 export default class Node {
+  static objToNode(obj) {
+    const node = new Node(obj.name);
+
+    node.children.forEach((child) => {
+      const childNode = Node.objToNode(child);
+      node.addChild(childNode);
+    });
+
+    return node;
+  }
+
+  static indentToRuleString(input) {
+    const obj = indent2obj(input);
+    let str = "";
+
+    Object.values(obj).forEach((key) => {
+      const rootNode = Node.objToNode(obj[key]);
+      str += rootNode.toRuleString();
+    });
+
+    return str;
+  }
+
   constructor(name, children = []) {
     this.name = name;
     this.children = children;
@@ -8,7 +33,7 @@ export default class Node {
     this.children.push(child);
   }
 
-  totIndentString(indent = "") {
+  toIndentString(indent = "") {
     const {name, children} = this;
     const childIndent = indent;
     let str = `${indent}${name}\n`;
