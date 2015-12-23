@@ -1,17 +1,17 @@
 import localStorage from "store"
 import * as types from "../constants/action-types"
 
-export function initializeValue() {
+export function fetchInput() {
   return {
-    type: types.EDITOR_INITIALIZE_VALUE,
-    value: localStorage.get("value")
+    type: types.EDITOR_FETCH_INPUT,
+    input: localStorage.get("input")
   };
 }
 
-export function changeValue(value) {
-  localStorage.set("value", value);
+export function changeInput(input) {
+  localStorage.set("input", input);
   return {
-    type: types.EDITOR_CHANGE_VALUE,
-    value
+    type: types.EDITOR_CHANGE_INPUT,
+    input
   };
 }

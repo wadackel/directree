@@ -5,12 +5,12 @@ import Editor from "./editor"
 
 export default class App extends Component {
   componentDidMount() {
-    this.props.initializeValue();
+    this.props.fetchInput();
   }
 
   render() {
-    const {changeValue, editor} = this.props;
-    const {value, tabSize} = editor;
+    const {changeInput, editor} = this.props;
+    const {input, output, tabSize} = editor;
 
     return (
       <div className="container">
@@ -23,14 +23,15 @@ export default class App extends Component {
           <Editor
             name="input-editor"
             className="editor--input container__col"
-            value={value}
+            value={input}
             tabSize={tabSize}
             readOnly={false}
-            onChange={text => changeValue(text)}
+            onChange={value => changeInput(value)}
           />
           <Editor
             name="output-editor"
             className="editor--output container__col"
+            value={output}
             tabSize={tabSize}
             readOnly={true}
           />
