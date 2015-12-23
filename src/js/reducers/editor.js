@@ -10,12 +10,14 @@ export default function editor(state = initialState, action) {
   switch (action.type) {
     case types.EDITOR_FETCH_INPUT:
       return Object.assign({}, state, {
-        input: action.input
+        input: action.input,
+        output: action.output
       });
 
     case types.EDITOR_CHANGE_INPUT:
       return Object.assign({}, state, {
-        input: action.input
+        input: action.input,
+        output: action.output
       });
 
     default:

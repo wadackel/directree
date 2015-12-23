@@ -48,7 +48,6 @@ export default class Editor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     const oldProps = this.props;
 
     if (nextProps.readOnly !== oldProps.readOnly) {

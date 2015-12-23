@@ -4,7 +4,7 @@ export default class Node {
   static objToNode(obj) {
     const node = new Node(obj.name);
 
-    node.children.forEach((child) => {
+    obj.children.forEach((child) => {
       const childNode = Node.objToNode(child);
       node.addChild(childNode);
     });
@@ -16,7 +16,7 @@ export default class Node {
     const obj = indent2obj(input);
     let str = "";
 
-    Object.values(obj).forEach((key) => {
+    Object.keys(obj).forEach((key) => {
       const rootNode = Node.objToNode(obj[key]);
       str += rootNode.toRuleString();
     });
@@ -35,11 +35,10 @@ export default class Node {
 
   toIndentString(indent = "") {
     const {name, children} = this;
-    const childIndent = indent;
     let str = `${indent}${name}\n`;
 
     children.forEach((child) => {
-      const ruleLine = `${childIndent}  `;
+      const ruleLine = `${indent}  `;
       str += child.toIndentString(ruleLine);
     });
 
