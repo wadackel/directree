@@ -6,6 +6,10 @@ import Dropfile from "../utils/dropfile"
 import sleep from "../utils/sleep"
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {scrollTop: 0};
+  }
   componentDidMount() {
     this.props.fetchInput();
     
@@ -21,6 +25,11 @@ export default class App extends Component {
 
   handleDropEnd(node) {
     this.props.changeInput(node.toIndentString());
+  }
+
+  handleScroll(scrollTop) {
+    console.log(scrollTop);
+    this.setState({scrollTop});
   }
 
   render() {
@@ -41,7 +50,9 @@ export default class App extends Component {
             value={input}
             tabSize={tabSize}
             readOnly={false}
+            scrollTop={this.state.scrollTop}
             onChange={value => changeInput(value)}
+            onScroll={::this.handleScroll}
           />
           <Editor
             name="output-editor"
@@ -49,6 +60,8 @@ export default class App extends Component {
             value={output}
             tabSize={tabSize}
             readOnly={true}
+            scrollTop={this.state.scrollTop}
+            onScroll={::this.handleScroll}
           />
         </div>
         <p className="copyright">Copyright Directree &copy; All Right Reserved.</p>
