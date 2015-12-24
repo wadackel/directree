@@ -10,12 +10,17 @@ export default class App extends Component {
     this.props.fetchInput();
     
     this.dropFile = new Dropfile(document.body);
-    this.dropFile.on(Dropfile.Event.DROP_START, (entry) => {
-      console.log("DROP_START", entry);
-    });
-    this.dropFile.on(Dropfile.Event.DROP_END, (nodes) => {
-      console.log("DROP_END", nodes);
-    });
+    this.dropFile.on(Dropfile.Event.DROP_START, ::this.handleDropStart);
+    this.dropFile.on(Dropfile.Event.DROP_END, ::this.handleDropEnd);
+  }
+
+  handleDropStart(entry) {
+    // @TODO implement of visual feedback
+    console.log("START", entry.name);
+  }
+
+  handleDropEnd(node) {
+    this.props.changeInput(node.toIndentString());
   }
 
   render() {
