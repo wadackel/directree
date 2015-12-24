@@ -2,10 +2,20 @@ import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import Header from "./header"
 import Editor from "./editor"
+import Dropfile from "../utils/dropfile"
+import sleep from "../utils/sleep"
 
 export default class App extends Component {
   componentDidMount() {
     this.props.fetchInput();
+    
+    this.dropFile = new Dropfile(document.body);
+    this.dropFile.on(Dropfile.Event.DROP_START, (entry) => {
+      console.log("DROP_START", entry);
+    });
+    this.dropFile.on(Dropfile.Event.DROP_END, (nodes) => {
+      console.log("DROP_END", nodes);
+    });
   }
 
   render() {
