@@ -23,3 +23,12 @@ export function changeInput(input) {
     output
   };
 }
+
+export function changeOutputStyle(outputStyle) {
+  localStorage.set("outputStyle", outputStyle);
+
+  return {
+    type: types.EDITOR_CHANGE_OUTPUT_STYLE,
+    outputStyle
+  };
+}
