@@ -1,10 +1,11 @@
 import * as types from "../constants/action-types"
 import * as outputStyles from "../constants/output-styles"
+import * as tabSizes from "../constants/tab-sizes"
 
 const initialState = {
   input: "",
   output: "",
-  tabSize: 2,
+  tabSize: tabSizes.SPACE2,
   outputStyle: outputStyles.TYPE_TEXT
 };
 
@@ -14,6 +15,7 @@ export default function editor(state = initialState, action) {
       return Object.assign({}, state, {
         input: action.input,
         output: action.output,
+        tabSize: action.tabSize,
         outputStyle: action.outputStyle
       });
 

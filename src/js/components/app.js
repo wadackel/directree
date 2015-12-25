@@ -5,6 +5,7 @@ import Header from "./header"
 import Editor from "./editor"
 import Dropfile from "../utils/dropfile"
 import sleep from "../utils/sleep"
+import * as tabSizes from "../constants/tab-sizes"
 import * as outputStyles from "../constants/output-styles"
 
 export default class App extends Component {
@@ -34,14 +35,22 @@ export default class App extends Component {
   }
 
   render() {
-    const {changeInput, changeOutputStyle, editor} = this.props;
+    const {changeInput, changeOutputStyle, changeTabSize, editor} = this.props;
     const {input, output, tabSize, outputStyle} = editor;
 
     return (
       <div className="container">
         <Header />
         <Select
-          className="select"
+          className=""
+          clearable={false}
+          searchable={false}
+          value={tabSize}
+          options={tabSizes.options}
+          onChange={changeTabSize}
+          />
+        <Select
+          className=""
           clearable={false}
           searchable={false}
           value={outputStyle}
