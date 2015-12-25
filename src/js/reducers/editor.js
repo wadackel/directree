@@ -3,7 +3,12 @@ import * as outputStyles from "../constants/output-styles"
 import * as tabSizes from "../constants/tab-sizes"
 
 const initialState = {
-  input: "",
+  input: `.
+  depth1
+    depth2
+      depth3
+  depth1
+    depth2`,
   output: "",
   tabSize: tabSizes.SPACE2,
   outputStyle: outputStyles.TYPE_TEXT
