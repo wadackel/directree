@@ -3,7 +3,7 @@ import * as types from "../constants/action-types"
 import Node from "../utils/node"
 
 export function fetchDefault() {
-  const input = localStorage.get("input");
+  const input = localStorage.get("input") || "";
   const output = Node.indentToRuleString(input);
   const tabSize = localStorage.get("tabSize");
   const outputStyle = localStorage.get("outputStyle");

@@ -10,14 +10,15 @@ const initialState = {
 };
 
 export default function editor(state = initialState, action) {
+  const tmpState = {};
+
   switch (action.type) {
     case types.EDITOR_FETCH_DEFAULT:
-      return Object.assign({}, state, {
-        input: action.input,
-        output: action.output,
-        tabSize: action.tabSize,
-        outputStyle: action.outputStyle
-      });
+      if (action.input) tmpState.input = action.input;
+      if (action.output) tmpState.output = action.output;
+      if (action.tabSize) tmpState.tabSize = action.tabSize;
+      if (action.outputStyle) tmpState.outputStyle = action.outputStyle;
+      return Object.assign({}, state, tmpState);
 
     case types.EDITOR_CHANGE_INPUT:
       return Object.assign({}, state, {
