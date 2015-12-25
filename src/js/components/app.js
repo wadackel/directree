@@ -14,7 +14,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchInput();
+    this.props.fetchDefault();
 
     this.dropFile = new Dropfile(document.body);
     this.dropFile.on(Dropfile.Event.DROP_START, ::this.handleDropStart);
@@ -34,7 +34,7 @@ export default class App extends Component {
   }
 
   render() {
-    const {changeInput, editor} = this.props;
+    const {changeInput, changeOutputStyle, editor} = this.props;
     const {input, output, tabSize, outputStyle} = editor;
 
     return (
@@ -46,7 +46,7 @@ export default class App extends Component {
           searchable={false}
           value={outputStyle}
           options={outputStyles.options}
-          onChange={value => console.log(value)}
+          onChange={changeOutputStyle}
           />
         <div className="editor-titles container__row">
           <h3 className="editor-title--input container__col">Input</h3>

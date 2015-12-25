@@ -10,10 +10,11 @@ const initialState = {
 
 export default function editor(state = initialState, action) {
   switch (action.type) {
-    case types.EDITOR_FETCH_INPUT:
+    case types.EDITOR_FETCH_DEFAULT:
       return Object.assign({}, state, {
         input: action.input,
-        output: action.output
+        output: action.output,
+        outputStyle: action.outputStyle
       });
 
     case types.EDITOR_CHANGE_INPUT:

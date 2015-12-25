@@ -2,14 +2,16 @@ import localStorage from "store"
 import * as types from "../constants/action-types"
 import Node from "../utils/node"
 
-export function fetchInput() {
+export function fetchDefault() {
   const input = localStorage.get("input");
   const output = Node.indentToRuleString(input);
+  const outputStyle = localStorage.get("outputStyle");
 
   return {
-    type: types.EDITOR_FETCH_INPUT,
+    type: types.EDITOR_FETCH_DEFAULT,
     input,
-    output
+    output,
+    outputStyle
   };
 }
 
