@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from "react"
 import brace from "brace"
 import "brace/mode/text"
-import "brace/theme/monokai"
+import "brace/theme/tomorrow_night"
 
 const CURSOR_POS = 1;
 
@@ -39,7 +39,7 @@ export default class Editor extends Component {
     const editor = brace.edit(name);
     const session = editor.getSession();
 
-    editor.setTheme("ace/theme/monokai");
+    editor.setTheme("ace/theme/tomorrow_night");
     editor.renderer.setPadding(10);
     editor.setValue(value, CURSOR_POS);
     editor.setOption("readOnly", readOnly);
