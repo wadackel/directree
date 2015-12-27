@@ -6,8 +6,8 @@
 
 
 //== Variables
-$color-primary:#272822;
-$color-accent:#0bcd74;
+$color-primary:#263238;
+$color-accent:#006064;
 
 $color-link:#fff;
 $color-link-hover:darken($color-link, 15%);
@@ -164,7 +164,7 @@ a {
   position:relative;
   z-index:100;
   display:table-row;
-  height:120px;
+  height:100px;
   background:darken($color-primary, 4%);
   color:#fff;
   box-shadow:0 1px 4px rgba(0, 0, 0, .3);

@@ -22,6 +22,13 @@ export default class App extends Component {
     this.dropFile.on(Dropfile.Event.DROP_END, ::this.handleDropEnd);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {output} = nextProps.editor;
+    const blob = new Blob([output], {type: "text/plain"});
+    const URL = window.URL || window.webkitURL;
+    this.refs.downloadBtn.setAttribute("href", URL.createObjectURL(blob));
+  }
+
   handleDropStart(entry) {
     console.log("START", entry.name);
   }
@@ -33,6 +40,16 @@ export default class App extends Component {
   handleScroll(scrollTop) {
     this.setState({scrollTop});
   }
+
+  handleEditorChange(value) {
+  }
+
+  // handleDownloadClick(e) {
+  //   e.preventDefault();
+  //   const blob = new Blob([this.props.output], {type: "text/plain"});
+  //   const URL = window.URL || window.webkitURL;
+  //   console.log(e);
+  // }
 
   render() {
     const {changeInput, changeOutputStyle, changeTabSize, editor} = this.props;
@@ -59,7 +76,7 @@ export default class App extends Component {
           />
         <div className="editor-titles container__row">
           <h3 className="editor-title--input container__col">Input</h3>
-          <h3 className="editor-title--output container__col">Output</h3>
+          <h3 className="editor-title--output container__col"><a ref="downloadBtn" download="directree.txt" href="#" target="_blank">Download</a>Output</h3>
         </div>
         <div className="editors container__row">
           <Editor

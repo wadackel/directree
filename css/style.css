@@ -3473,7 +3473,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   height: 100%;
-  background: #272822;
+  background: #263238;
   font-size: 14px;
   font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
 }
@@ -3559,8 +3559,8 @@ a:active {
   position: relative;
   z-index: 100;
   display: table-row;
-  height: 120px;
-  background: #1c1d19;
+  height: 100px;
+  background: #1e272c;
   color: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
@@ -3698,10 +3698,10 @@ a:active {
 .editor-title, .editor-title--input, .editor-title--output {
   padding: 8px 30px;
   margin: 0;
-  background: #2c2e27;
+  background: #2a373e;
   font-size: .9rem;
-  border-top: 1px solid #0bcd74;
-  border-bottom: 1px solid #22221d;
+  border-top: 1px solid #006064;
+  border-bottom: 1px solid #222d32;
   color: #fff;
   text-align: right;
   line-height: 1;
@@ -3742,9 +3742,9 @@ a:active {
   z-index: 9999;
   width: 100%;
   height: 100%;
-  background: rgba(39, 40, 34, 0.9);
-  border: 4px solid #0bcd74;
-  color: #0bcd74;
+  background: rgba(38, 50, 56, 0.9);
+  border: 4px solid #006064;
+  color: #006064;
   font-size: 60px;
   font-weight: bold;
   line-height: 1.4;
