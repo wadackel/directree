@@ -1,5 +1,6 @@
 import localStorage from "store"
 import * as types from "../constants/action-types"
+import blobTypes from "../constants/blob-types"
 import Node from "../utils/node"
 
 export function fetchDefault() {
