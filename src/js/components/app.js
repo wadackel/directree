@@ -49,6 +49,8 @@ export default class App extends Component {
       tabSize,
       outputStyle
     } = editor;
+    
+    const fileName = `directree.${outputStyles.extensions[outputStyle]}`;
 
     return (
       <div className="container">
@@ -71,7 +73,7 @@ export default class App extends Component {
           />
         <div className="editor-titles container__row">
           <h3 className="editor-title--input container__col">Input</h3>
-          <h3 className="editor-title--output container__col"><a download="directree.txt" href={outputBlob} target="_blank">Download</a>Output</h3>
+          <h3 className="editor-title--output container__col"><a download={fileName} href={outputBlob} target="_blank">Download</a>Output</h3>
         </div>
         <div className="editors container__row">
           <Editor
