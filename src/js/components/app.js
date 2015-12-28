@@ -22,6 +22,11 @@ export default class App extends Component {
     this.dropFile.on(Dropfile.Event.DROP_END, ::this.handleDropEnd);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {editor: {ignorePattern}} = nextProps;
+    this.dropFile.ignorePattern = ignorePattern;
+  }
+
   handleDropStart(entry) {
     console.log("START", entry.name);
   }
@@ -39,6 +44,7 @@ export default class App extends Component {
       changeInput,
       changeOutputStyle,
       changeTabSize,
+      changeIgnorePattern,
       editor
     } = this.props;
 
@@ -47,9 +53,10 @@ export default class App extends Component {
       output,
       outputBlob,
       tabSize,
-      outputStyle
+      outputStyle,
+      ignorePattern
     } = editor;
-    
+
     const fileName = `directree.${outputStyles.extensions[outputStyle]}`;
 
     return (
@@ -71,6 +78,9 @@ export default class App extends Component {
           options={outputStyles.options}
           onChange={changeOutputStyle}
           />
+        <div>
+          <input type="text" value={ignorePattern} onChange={e => changeIgnorePattern(e.target.value.trim())} placeholder="**/*.DS_Store" />
+        </div>
         <div className="editor-titles container__row">
           <h3 className="editor-title--input container__col">Input</h3>
           <h3 className="editor-title--output container__col"><a download={fileName} href={outputBlob} target="_blank">Download</a>Output</h3>

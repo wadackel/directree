@@ -2,7 +2,6 @@ import EventEmitter from "events"
 import minimatch from "minimatch"
 import Node from "./node"
 
-const ignore = "**/images, **/*.DS_Store"
 const ignoreOptions = {
   dot: true
 };
@@ -14,10 +13,11 @@ export default class Dropfile extends EventEmitter {
     DROP_ERROR: "DROP_ERROR"
   }
 
-  constructor(el) {
+  constructor(el, ignorePattern) {
     super();
     this.el = el;
     this.isDragOver = false;
+    this.ignorePattern = ignorePattern;
     this.bindEvents();
   }
 
@@ -75,7 +75,7 @@ export default class Dropfile extends EventEmitter {
   }
 
   pathMatch(path) {
-    const patterns = ignore.split(",");
+    const patterns = this.ignorePattern.split(",");
     for (let i = 0; i < patterns.length; i++) {
       if (minimatch(path, patterns[i], ignoreOptions)) return true;
     }

@@ -5,12 +5,14 @@ export function fetchDefault() {
   const input = localStorage.get("input") || "";
   const tabSize = localStorage.get("tabSize");
   const outputStyle = localStorage.get("outputStyle");
+  const ignorePattern = localStorage.get("ignorePattern");
 
   return {
     type: types.EDITOR_FETCH_DEFAULT,
     input,
     tabSize,
-    outputStyle
+    outputStyle,
+    ignorePattern
   };
 }
 
@@ -38,5 +40,14 @@ export function changeTabSize(tabSize) {
   return {
     type: types.EDITOR_CHANGE_TAB_SIZE,
     tabSize
+  };
+}
+
+export function changeIgnorePattern(ignorePattern) {
+  localStorage.set("ignorePattern", ignorePattern);
+
+  return {
+    type: types.EDITOR_CHANGE_IGNORE_PATTERN,
+    ignorePattern
   };
 }
