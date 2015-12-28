@@ -2,7 +2,7 @@ import EventEmitter from "events"
 import minimatch from "minimatch"
 import Node from "./node"
 
-const ignore = "**/images, .DS_Store"
+const ignore = "**/images, **/*.DS_Store"
 const ignoreOptions = {
   dot: true
 };
@@ -83,7 +83,7 @@ export default class Dropfile extends EventEmitter {
   }
 
   entryPathMatch(entry) {
-    return this.pathMatch(entry.name) || this.pathMatch(entry.fullPath);
+    return this.pathMatch(entry.fullPath);
   }
 
   entryToNode(entry) {
@@ -93,7 +93,6 @@ export default class Dropfile extends EventEmitter {
       if (entry.isFile) {
         return resolve(this.entryPathMatch(entry) ? null : node);
       }
-      // if (entry.isFile) return resolve(node);
       if (!entry.isDirectory) return reject();
       entry.createReader().readEntries(results => {
         if (results.length === 0) return resolve(node);
