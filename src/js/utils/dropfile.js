@@ -1,5 +1,10 @@
 import EventEmitter from "events"
+import minimatch from "minimatch"
 import Node from "./node"
+
+const ignoreOptions = {
+  dot: true
+};
 
 export default class Dropfile extends EventEmitter {
   static Event = {
@@ -8,10 +13,11 @@ export default class Dropfile extends EventEmitter {
     DROP_ERROR: "DROP_ERROR"
   }
 
-  constructor(el) {
+  constructor(el, ignorePattern) {
     super();
     this.el = el;
     this.isDragOver = false;
+    this.ignorePattern = ignorePattern;
     this.bindEvents();
   }
 
@@ -68,11 +74,25 @@ export default class Dropfile extends EventEmitter {
       });
   }
 
+  pathMatch(path) {
+    const patterns = this.ignorePattern.split(",");
+    for (let i = 0; i < patterns.length; i++) {
+      if (minimatch(path, patterns[i], ignoreOptions)) return true;
+    }
+    return false;
+  }
+
+  entryPathMatch(entry) {
+    return this.pathMatch(entry.fullPath);
+  }
+
   entryToNode(entry) {
     const node = new Node(entry.name);
 
     return new Promise((resolve, reject) => {
-      if (entry.isFile) return resolve(node);
+      if (entry.isFile) {
+        return resolve(this.entryPathMatch(entry) ? null : node);
+      }
       if (!entry.isDirectory) return reject();
       entry.createReader().readEntries(results => {
         if (results.length === 0) return resolve(node);
@@ -80,7 +100,9 @@ export default class Dropfile extends EventEmitter {
         results.forEach(result => {
           this.entryToNode(result).then(nodes => {
             i++;
-            node.addChild(nodes);
+            if (nodes != null && !this.entryPathMatch(result)) {
+              node.addChild(nodes);
+            }
             if (i === results.length) resolve(node);
           }, reject);
         });
