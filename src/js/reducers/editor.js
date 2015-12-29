@@ -32,7 +32,6 @@ function createObjectURL(value, type = "text/plain") {
 
 
 function createOutputValue(input, outputStyle = initialState.outputStyle, tabSize = initialState.tabSize) {
-  console.log(indent(tabSize));
   switch (outputStyle) {
     case outputStyles.TYPE_TEXT:
       return Node.indentToRuleString(input, indent(tabSize));

@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "brace": "^0.7.0",
+    "clipboard": "^1.5.5",
     "indent2obj": "0.0.3",
     "minimatch": "^3.0.0",
     "react": "^0.14.3",

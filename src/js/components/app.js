@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import Select from "react-select"
+import Clipboard from "clipboard"
 import Header from "./header"
 import Editor from "./editor"
 import Dropfile from "../utils/dropfile"
@@ -20,6 +21,13 @@ export default class App extends Component {
     this.dropFile = new Dropfile(document.body);
     this.dropFile.on(Dropfile.Event.DROP_START, ::this.handleDropStart);
     this.dropFile.on(Dropfile.Event.DROP_END, ::this.handleDropEnd);
+
+    this.clipboard = new Clipboard(this.refs.btnCopy, {
+      text: trigger => {
+        return this.props.editor.output;
+      }
+    });
+    this.clipboard.on("success", ::this.handleClipboardSuccess);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,6 +45,10 @@ export default class App extends Component {
 
   handleScroll(scrollTop) {
     this.setState({scrollTop});
+  }
+
+  handleClipboardSuccess(e) {
+    console.log(e);
   }
 
   render() {
@@ -83,7 +95,11 @@ export default class App extends Component {
         </div>
         <div className="editor-titles container__row">
           <h3 className="editor-title--input container__col">Input</h3>
-          <h3 className="editor-title--output container__col"><a download={fileName} href={outputBlob} target="_blank">Download</a>Output</h3>
+          <h3 className="editor-title--output container__col">
+            <a download={fileName} href={outputBlob} target="_blank">Download</a>
+            <button ref="btnCopy">Copy</button>
+            Output
+          </h3>
         </div>
         <div className="editors container__row">
           <Editor
