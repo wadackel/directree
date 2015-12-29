@@ -12,8 +12,8 @@ export default class Node {
     return node;
   }
 
-  static indentToRuleString(input) {
-    const obj = indent2obj(input);
+  static indentToRuleString(input, indent = "  ") {
+    const obj = indent2obj(input, indent);
     let str = "";
 
     Object.keys(obj).forEach((key) => {

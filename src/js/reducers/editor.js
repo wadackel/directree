@@ -20,18 +20,24 @@ const initialState = {
 };
 
 
+function indent(tabSize) {
+  return new Array(tabSize + 1).join(" ");
+}
+
+
 function createObjectURL(value, type = "text/plain") {
   const blob = new Blob([value], {type});
   return URL.createObjectURL(blob);
 }
 
 
-function createOutputValue(input, outputStyle = initialState.outputStyle) {
+function createOutputValue(input, outputStyle = initialState.outputStyle, tabSize = initialState.tabSize) {
+  console.log(indent(tabSize));
   switch (outputStyle) {
     case outputStyles.TYPE_TEXT:
-      return Node.indentToRuleString(input);
+      return Node.indentToRuleString(input, indent(tabSize));
     case outputStyles.TYPE_JSON:
-      return JSON.stringify(indent2obj(input), null, "  ");
+      return JSON.stringify(indent2obj(input, indent(tabSize)), null, "  ");
     default:
       return input;
   }
@@ -48,20 +54,26 @@ export default function editor(state = initialState, action) {
       if (action.outputStyle) tmpState.outputStyle = action.outputStyle;
       if (action.ignorePattern) tmpState.ignorePattern = action.ignorePattern;
       tmpState = Object.assign({}, state, tmpState);
-      tmpState.output = createOutputValue(tmpState.input, tmpState.outputStyle);
+      tmpState.output = createOutputValue(tmpState.input, tmpState.outputStyle, tmpState.tabSize);
       tmpState.outputBlob = createObjectURL(tmpState.output, tmpState.outputStyle);
       return tmpState;
 
     case types.EDITOR_CHANGE_INPUT:
       tmpState.input = action.input;
-      tmpState.output = createOutputValue(action.input, state.outputStyle);
+      tmpState.output = createOutputValue(action.input, state.outputStyle, state.tabSize);
       tmpState.outputBlob = createObjectURL(tmpState.output, state.outputStyle);
       return Object.assign({}, state, tmpState);
 
     case types.EDITOR_CHANGE_OUTPUT_STYLE:
-      tmpState.output = createOutputValue(state.input, action.outputStyle);
+      tmpState.output = createOutputValue(state.input, action.outputStyle, state.tabSize);
       tmpState.outputStyle = action.outputStyle;
       tmpState.outputBlob = createObjectURL(tmpState.output, action.outputStyle);
+      return Object.assign({}, state, tmpState);
+
+    case types.EDITOR_CHANGE_TAB_SIZE:
+      tmpState.tabSize = action.tabSize;
+      tmpState.output = createOutputValue(state.input, state.outputStyle, action.tabSize);
+      tmpState.outputBlob = createObjectURL(tmpState.output, state.outputStyle);
       return Object.assign({}, state, tmpState);
 
     case types.EDITOR_CHANGE_IGNORE_PATTERN:
