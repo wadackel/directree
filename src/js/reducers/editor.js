@@ -59,7 +59,7 @@ export default function editor(state = initialState, action) {
       return Object.assign({}, state, tmpState);
 
     case types.EDITOR_CHANGE_OUTPUT_STYLE:
-      tmpState.output = createOutputValue(state.input);
+      tmpState.output = createOutputValue(state.input, action.outputStyle);
       tmpState.outputStyle = action.outputStyle;
       tmpState.outputBlob = createObjectURL(tmpState.output, action.outputStyle);
       return Object.assign({}, state, tmpState);
