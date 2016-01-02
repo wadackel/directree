@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from "react"
 
+const TRANSITION_DURATION = 250;
+
 export default class Modal extends Component {
   static propTypes = {
     className: PropTypes.string,
@@ -16,9 +18,33 @@ export default class Modal extends Component {
 
   constructor(props) {
     super(props);
+    this.focusAfterRender = false;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.isOpen && nextProps.isOpen) {
+      this.focusAfterRender = true;
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.focusAfterRender) {
+      this.focusAfterRender = false;
+      setTimeout(() => {
+        this.refs.content.focus();
+      }, TRANSITION_DURATION);
+    }
   }
 
   handleCloseClick(e) {
+    this.requestClose();
+  }
+
+  handleKeyDown(e) {
+    if (e.keyCode === 27) this.requestClose();
+  }
+
+  requestClose() {
     if (this.props.onRequestClose) {
       this.props.onRequestClose();
     }
@@ -31,7 +57,7 @@ export default class Modal extends Component {
     return (
       <div className={classNames}>
         <div className="modal__overlay" onClick={::this.handleCloseClick}></div>
-        <div className="modal__content">
+        <div className="modal__content" ref="content" onKeyDown={::this.handleKeyDown} tabIndex="-1">
           <div className="modal__heading">
             <div className="modal__title">
               <i className={`fa fa-${icon}`}></i>
