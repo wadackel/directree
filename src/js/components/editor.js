@@ -44,6 +44,7 @@ export default class Editor extends Component {
     editor.setValue(value, CURSOR_POS);
     editor.setOption("readOnly", readOnly);
     editor.setOption("tabSize", tabSize);
+    editor.setOption("showPrintMargin", false);
     session.setMode("ace/mode/text");
 
     if (scrollTop != null) {
