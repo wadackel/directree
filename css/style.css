@@ -3570,26 +3570,6 @@ a:active {
   vertical-align: middle;
 }
 
-@media (max-width: 560px) {
-  .header {
-    display: block;
-    height: auto;
-    padding: 15px 0;
-  }
-  .header__inner {
-    display: block;
-    text-align: center;
-  }
-  .header .brand,
-  .header .shares {
-    float: none;
-    margin-right: 0;
-    margin-left: 0;
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-}
-
 .brand {
   float: left;
   margin: 0;
