@@ -2,7 +2,8 @@ import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import Select from "react-select"
 import Clipboard from "clipboard"
-import Header from "./header"
+import Modal from "./modal"
+import Footer from "./footer"
 import Editor from "./editor"
 import Dropfile from "../utils/dropfile"
 import sleep from "../utils/sleep"
@@ -12,7 +13,11 @@ import * as outputStyles from "../constants/output-styles"
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {scrollTop: 0};
+    this.state = {
+      scrollTop: 0,
+      isSettingOpen: false,
+      isAboutOpen: false
+    };
   }
 
   componentDidMount() {
@@ -51,6 +56,22 @@ export default class App extends Component {
     console.log(e);
   }
 
+  openSettingModal() {
+    this.setState({isSettingOpen: true});
+  }
+
+  closeSettingModal() {
+    this.setState({isSettingOpen: false});
+  }
+
+  openAboutModal() {
+    this.setState({isAboutOpen: true});
+  }
+
+  closeAboutModal() {
+    this.setState({isAboutOpen: false});
+  }
+
   render() {
     const {
       changeInput,
@@ -59,6 +80,11 @@ export default class App extends Component {
       changeIgnorePattern,
       editor
     } = this.props;
+
+    const {
+      isSettingOpen,
+      isAboutOpen
+    } = this.state;
 
     const {
       input,
@@ -73,34 +99,29 @@ export default class App extends Component {
 
     return (
       <div className="container">
-        <Header />
-        <Select
-          className=""
-          clearable={false}
-          searchable={false}
-          value={tabSize}
-          options={tabSizes.options}
-          onChange={changeTabSize}
-          />
-        <Select
-          className=""
-          clearable={false}
-          searchable={false}
-          value={outputStyle}
-          options={outputStyles.options}
-          onChange={changeOutputStyle}
-          />
-        <div>
-          <input type="text" value={ignorePattern} onChange={e => changeIgnorePattern(e.target.value.trim())} placeholder="**/*.DS_Store" />
+        <div className="container__row">
+          <div className="editor-header container__col">
+            <h1 className="editor-header__title--brand"><a href="./">Directree</a></h1>
+            <div className="editor-header__control">
+              <button className="btn" onClick={::this.openAboutModal}><i className="fa fa-info-circle"></i> About</button>
+              <button className="btn" onClick={::this.openSettingModal}><i className="fa fa-cog"></i> Setting</button>
+            </div>
+          </div>
+          <div className="editor-header container__col">
+            <h2 className="editor-header__title">Output</h2>
+            <div className="editor-header__control">
+              <button className="btn" ref="btnCopy"><i className="fa fa-clipboard"></i> Copy</button>
+              <a
+                className="btn"
+                download={fileName}
+                href={outputBlob}
+                target="_blank">
+                <i className="fa fa-download"></i> Download
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="editor-titles container__row">
-          <h3 className="editor-title--input container__col">Input</h3>
-          <h3 className="editor-title--output container__col">
-            <a download={fileName} href={outputBlob} target="_blank">Download</a>
-            <button ref="btnCopy">Copy</button>
-            Output
-          </h3>
-        </div>
+
         <div className="editors container__row">
           <Editor
             name="input-editor"
@@ -110,8 +131,7 @@ export default class App extends Component {
             readOnly={false}
             scrollTop={this.state.scrollTop}
             onChange={value => changeInput(value)}
-            onScroll={::this.handleScroll}
-          />
+            onScroll={::this.handleScroll} />
           <Editor
             name="output-editor"
             className="editor--output container__col"
@@ -119,10 +139,48 @@ export default class App extends Component {
             tabSize={tabSize}
             readOnly={true}
             scrollTop={this.state.scrollTop}
-            onScroll={::this.handleScroll}
-          />
+            onScroll={::this.handleScroll} />
         </div>
-        <p className="copyright">Copyright Directree &copy; All Right Reserved.</p>
+
+        <Modal title="About" icon="info-circle" isOpen={isAboutOpen} onRequestClose={::this.closeAboutModal}>
+          @TODO
+        </Modal>
+
+        <Modal title="Setting" icon="cog" isOpen={isSettingOpen} onRequestClose={::this.closeSettingModal}>
+          <dl>
+            <dt>スペースの数</dt>
+            <dd>
+              <Select
+                className=""
+                clearable={false}
+                searchable={false}
+                value={tabSize}
+                options={tabSizes.options}
+                onChange={changeTabSize} />
+            </dd>
+            <dt>出力の種類</dt>
+            <dd>
+              <Select
+                className=""
+                clearable={false}
+                searchable={false}
+                value={outputStyle}
+                options={outputStyles.options}
+                onChange={changeOutputStyle} />
+            </dd>
+            <dt>除外ファイル</dt>
+            <dd>
+              <input
+                type="text"
+                value={ignorePattern}
+                onChange={e => changeIgnorePattern(e.target.value.trim())}
+                placeholder="**/*.DS_Store" />
+              <p className="_help">フォルダをドロップした際に除外したいファイルのパターンを指定します。</p>
+            </dd>
+          </dl>
+        </Modal>
+
+        <Footer />
       </div>
     );
   }

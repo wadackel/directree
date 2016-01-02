@@ -1,0 +1,23 @@
+//== Colors
+$color-primary: #263238;
+$color-accent: #006064;
+$color-link: #fff;
+$color-link-hover: darken($color-link, 15%);
+$color-link-active: darken($color-link-hover, 10%);
+$color-sns-twitter: #00aced;
+$color-sns-facebook: #305097;
+$color-sns-hatena: #00a4de;
+$color-sns-pocket: #ef4056;
+$color-sns-github: #4078c0;
+
+//== Transition
+$transition-duration: .25s;
+$transition-easing: $ease-out-quart;
+
+//== Typography
+$font-code: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
+$font-sans-serif: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+$font-accent: "Courgette",cursive;
+
+//== Footer
+$footer-height: 50px;

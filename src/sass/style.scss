@@ -1,49 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Courgette);
+@import "easings";
+@import "variables";
+@import "mixins";
 @import "normalize";
 @import "font-awesome/font-awesome";
 @import "iconmoon";
 @import "select/default";
 
-// == Variables
-$color-primary: #263238;
-$color-accent: #006064;
-$color-link: #fff;
-$color-link-hover: darken($color-link, 15%);
-$color-link-active: darken($color-link-hover, 10%);
-$color-sns-twitter: #00aced;
-$color-sns-facebook: #305097;
-$color-sns-hatena: #00a4de;
-$color-sns-pocket: #ef4056;
-$color-sns-github: #4078c0;
-$transition-duration: .25s;
-$transition-easing: ease-in-out;
-$font-base: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
-$font-accent: "Courgette",cursive;
-
-// == Mixins
-@mixin e($name) {
-  &__#{$name} {
-    @content;
-  }
-}
-
-@mixin m($name) {
-  &--#{$name} {
-    @content;
-  }
-}
-
-@mixin font-smooth($smooth: true) {
-  @if $smooth == true {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  @else  {
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-  }
-}
 
 // == Utilities
 .clearfix {
@@ -56,8 +19,11 @@ $font-accent: "Courgette",cursive;
   }
 }
 
+
 // == Base
-* {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -68,7 +34,7 @@ html {
   height: 100%;
   background: $color-primary;
   font-size: 14px;
-  font-family: $font-base;
+  font-family: $font-sans-serif;
 }
 
 body {
@@ -89,19 +55,18 @@ a {
 }
 
 ::selection {
-  background: #000;
+  background: $color-accent;
 }
 
 ::-moz-selection {
-  background: #000;
+  background: $color-accent;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
-  color: #8f908a;
-  background: darken(#2f3129, 5%);
+  color: #c5c8c6;
+  background: darken(#25282c, 5%);
   z-index: 10;
-
   &:horizontal {
     height: 6px;
   }
@@ -113,8 +78,9 @@ a {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 3px;
-  background: darken(#2f3129, 8%);
+  background: darken(#25282c, 10%);
 }
+
 
 // @TODO
 .select {
@@ -124,6 +90,7 @@ a {
   z-index: 1000;
   width: 200px;
 }
+
 
 // == Components
 #app {
@@ -137,59 +104,137 @@ a {
   display: table;
   table-layout: fixed;
   width: 100%;
+  min-width: 960px;
   height: 100%;
+  padding-bottom: $footer-height;
   @include e(row){
     display: table-row;
     width: 100%;
   }
   @include e(col){
-    float: left;
+    display: table-cell;
     width: 50%;
   }
 }
 
-.header {
-  position: relative;
-  z-index: 100;
-  display: table-row;
-  height: 100px;
-  background: darken($color-primary, 4%);
+.btn {
+  display: inline-block;
+  margin: 0;
+  padding: 1rem 2rem;
+  border: 0;
+  background: $color-accent;
   color: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
-  @include e(inner){
-    @extend .clearfix;
-    display: table-cell;
-    vertical-align: middle;
+  font-family: $font-sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  user-select: none;
+  transition: all $transition-duration $transition-easing;
+  .fa {
+    margin-right: .2em;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: darken($color-accent, 6%);
+  }
+  &:active {
+    background: darken($color-accent, 10%);
   }
 }
 
-.brand {
-  float: left;
-  margin: 0;
-  padding: 0 30px;
-  letter-spacing: .05em;
-  @include e(logo){
-    margin: 0 0 5px 0;
-    font-size: 2.8rem;
-    font-family: $font-accent;
-  }
-  @include e(text){
+.editor-header {
+  $height: 40px;
+  height: $height;
+  background: lighten($color-primary, 2%);
+  color: #fff;
+  @include e(title) {
+    float: left;
     margin: 0;
-    font-size: .8rem;
+    padding: 0 25px;
+    font-family: $font-sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: $height;
+    @include m(brand) {
+      @extend .editor-header__title;
+      padding: 0;
+      font-family: $font-accent;
+      font-size: 1.6rem;
+      letter-spacing: .05em;
+      a {
+        display: block;
+        padding: 0 25px;
+        transition: all $transition-duration $transition-easing;
+        &:hover {
+          background: darken($color-primary, 5%);
+          color: #fff;
+        }
+      }
+    }
+  }
+  @include e(control) {
+    float: right;
+    .btn {
+      float: left;
+      display: block;
+      margin: 0 0 0 1px;
+      padding-top: 0;
+      padding-bottom: 0;
+      height: $height;
+      line-height: $height;
+    }
+  }
+}
+
+.editors {
+  height: 100%;
+}
+
+.editor {
+  @include font-smooth(false);
+  position: relative;
+  height: 100%;
+  font-family: $font-code !important;
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+  @include m(input){
+    @extend .editor;
+  }
+  @include m(output){
+    @extend .editor;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  width: 100%;
+  height: $footer-height;
+  padding: 0 25px;
+  background: darken($color-primary, 10%);
+  .shares {
+    float: left;
+  }
+  .copyright {
+    float: right;
   }
 }
 
 .shares {
-  float: right;
-  margin: 0 30px 0 0;
-  padding: 15px 0 0 0;
+  margin: 0;
+  padding: 5px 0 0 0;
   font-size: 0;
   @include e(item){
     position: relative;
     display: inline-block;
-    margin-left: 5px;
+    margin: 0 5px 0 0;
     list-style: none;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     @include m(twitter){
       @extend .shares__item;
       .shares__link:hover {
@@ -231,8 +276,8 @@ a {
   }
   @include e(popup){
     position: absolute;
-    bottom: -30px;
-    right: 0;
+    top: -30px;
+    left: 0;
     z-index: 10;
     width: auto;
     min-height: 20px;
@@ -242,6 +287,7 @@ a {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .7);
     opacity: 0;
     visibility: hidden;
+    color: #fff;
     font-size: .8rem;
     text-align: center;
     white-space: nowrap;
@@ -250,8 +296,8 @@ a {
     &:after {
       content: "";
       position: absolute;
-      top: -5px;
-      right: 15px;
+      bottom: -5px;
+      left: 15px;
       display: block;
       width: 0;
       height: 0;
@@ -260,8 +306,8 @@ a {
       border-color: #000;
       border-right-color: transparent;
       border-left-color: transparent;
-      border-top-width: 0;
-      border-top-color: transparent;
+      border-bottom-width: 0;
+      border-bottom-color: transparent;
     }
     .shares__item:hover & {
       visibility: visible;
@@ -271,52 +317,12 @@ a {
   }
 }
 
-.editor-title {
-  padding: 8px 30px;
-  margin: 0;
-  background: lighten($color-primary, 2%);
-  font-size: .9rem;
-  border-top: 1px solid $color-accent;
-  border-bottom: 1px solid darken($color-primary, 2%);
-  color: #fff;
-  text-align: right;
-  line-height: 1;
-  @include m(input){
-    @extend .editor-title;
-    padding-right: 0;
-  }
-  @include m(output){
-    @extend .editor-title;
-  }
-}
-
-.editors {
-  height: 100%;
-}
-
-.editor {
-  @include font-smooth(false);
-  position: relative;
-  height: 100%;
-  font-size: 15px !important;
-  line-height: 1.6 !important;
-  @include m(input){
-    @extend .editor;
-  }
-  @include m(output){
-    @extend .editor;
-  }
-}
-
 .copyright {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  z-index: 100;
   margin: 0;
-  text-align: right;
-  font-size: .8rem;
   color: #fff;
+  font-size: .9rem;
+  letter-spacing: .05em;
+  line-height: $footer-height;
 }
 
 .drop-info {
@@ -357,5 +363,143 @@ a {
     margin: 0;
     color: #fff;
     font-size: 14px;
+  }
+}
+
+
+//== Modal
+.modal {
+  $width: 600px;
+  $height: 400px;
+  $heading-height: 50px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  color: #333;
+  transition: all $transition-duration $transition-easing;
+  ::-webkit-scrollbar {
+    background: #eee;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #aaa;
+  }
+  @include m(show) {
+    opacity: 1;
+    visibility: visible;
+  }
+  @include e(overlay) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, .5);
+  }
+  @include e(content) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    width: $width;
+    height: $height;
+    max-height: 100%;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .6);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.05, 1.05) translate(-50%, -50%);
+    transform-origin: 0% 0%;
+    transition: all $transition-duration $transition-easing;
+    transition-delay: $transition-duration / 2;
+    .modal--show & {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1, 1) translate(-50%, -50%);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  @include e(heading) {
+    overflow: hidden;
+    height: $heading-height;
+    background: #efefef;
+    border-bottom: 1px solid #eaeaea;
+    border-radius: 3px 3px 0 0;
+  }
+  @include e(title) {
+    float: left;
+    margin: 0;
+    padding: 0 25px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: $heading-height;
+    .fa {
+      margin-right: .2em;
+    }
+  }
+  @include e(close) {
+    float: right;
+    display: block;
+    width: $heading-height;
+    height: $heading-height;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    line-height: $heading-height;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      opacity: .5;
+    }
+  }
+  @include e(body) {
+    max-height: $height - $heading-height;
+    overflow-y: auto;
+    padding: 25px;
+    dl {
+      margin: 0 0 1rem 0;
+    }
+    dt {
+      margin: 0 0 .5em 0;
+      font-weight: bold;
+    }
+    dd {
+      margin: 0 0 1.5em 0;
+    }
+    input[type="text"] {
+      display: block;
+      width: 100%;
+      height: 35px;
+      padding: 4px 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 1rem;
+      line-height: 35px;
+      transition: all $transition-duration $transition-easing;
+      &:focus {
+        outline: none;
+        border-color: $color-accent;
+      }
+      &:hover {
+        box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+      }
+    }
+    ._help {
+      margin: .4em 0 1em 0;
+      font-size: .9rem;
+    }
   }
 }
