@@ -4,6 +4,7 @@ export default class Modal extends Component {
   static propTypes = {
     className: PropTypes.string,
     title: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
     isOpen: PropTypes.bool,
     onRequestClose: PropTypes.func
   }
@@ -24,7 +25,7 @@ export default class Modal extends Component {
   }
 
   render() {
-    const {className, isOpen} = this.props;
+    const {className, title, icon, isOpen} = this.props;
     const classNames = `${isOpen ? "modal modal--show" : "modal"} ${className}`;
 
     return (
@@ -32,7 +33,10 @@ export default class Modal extends Component {
         <div className="modal__overlay" onClick={::this.handleCloseClick}></div>
         <div className="modal__content">
           <div className="modal__heading">
-            <div className="modal__title">{this.props.title}</div>
+            <div className="modal__title">
+              <i className={`fa fa-${icon}`}></i>
+              {title}
+            </div>
             <button className="modal__close" onClick={::this.handleCloseClick}><i className="fa fa-close"></i></button>
           </div>
           <div className="modal__body">{this.props.children}</div>
