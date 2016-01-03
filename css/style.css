@@ -3647,6 +3647,8 @@ a:active {
 
 .footer {
   position: absolute;
+  top: auto;
+  right: auto;
   bottom: 0;
   left: 0;
   z-index: 1000;
@@ -3711,6 +3713,8 @@ a:active {
 .shares__popup {
   position: absolute;
   top: -30px;
+  right: auto;
+  bottom: auto;
   left: 0;
   z-index: 10;
   width: auto;
@@ -3730,10 +3734,13 @@ a:active {
 }
 
 .shares__popup:after {
-  content: "";
   position: absolute;
+  top: auto;
+  right: auto;
   bottom: -5px;
   left: 15px;
+  z-index: auto;
+  content: "";
   display: block;
   width: 0;
   height: 0;
@@ -3780,12 +3787,13 @@ a:active {
 }
 
 .drop-info:before {
-  content: "";
   position: absolute;
   top: 8px;
   right: 8px;
   bottom: 8px;
   left: 8px;
+  z-index: auto;
+  content: "";
   display: block;
   border: 1px dashed #fff;
 }
@@ -3801,6 +3809,7 @@ a:active {
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: auto;
   height: 100px;
   margin: auto;
   opacity: 0;
@@ -3826,7 +3835,10 @@ a:active {
 .drop-info__spinner {
   position: absolute;
   top: 50%;
+  right: auto;
+  bottom: auto;
   left: 50%;
+  z-index: auto;
   opacity: 0;
   visibility: hidden;
   transform: translate(-50%, -50%);
@@ -3878,6 +3890,8 @@ a:active {
 .modal__content {
   position: absolute;
   top: 50%;
+  right: auto;
+  bottom: auto;
   left: 50%;
   z-index: 10;
   width: 600px;
@@ -4014,10 +4028,13 @@ a:active {
 }
 
 .spinner:before, .spinner:after {
-  content: "";
   position: absolute;
   top: -2px;
+  right: auto;
+  bottom: auto;
   left: -2px;
+  z-index: auto;
+  content: "";
   display: none;
   width: inherit;
   height: inherit;

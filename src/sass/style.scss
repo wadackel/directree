@@ -198,10 +198,7 @@ a {
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
+  @include absolute(auto, auto, 0, 0, 1000);
   display: block;
   width: 100%;
   height: $footer-height;
@@ -265,10 +262,7 @@ a {
     transition: color $transition-duration $transition-easing;
   }
   @include e(popup){
-    position: absolute;
-    top: -30px;
-    left: 0;
-    z-index: 10;
+    @include absolute(-30px, auto, auto, 0, 10);
     width: auto;
     min-height: 20px;
     padding: .6em 1.2em;
@@ -284,10 +278,8 @@ a {
     transform: translateY(5px);
     transition: all $transition-duration $transition-easing;
     &:after {
+      @include absolute(auto, auto, -5px, 15px);
       content: "";
-      position: absolute;
-      bottom: -5px;
-      left: 15px;
       display: block;
       width: 0;
       height: 0;
@@ -316,12 +308,7 @@ a {
 }
 
 .drop-info {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 9999;
+  @include fixed(0, 0, 0, 0, 9999);
   background: rgba($color-accent, .9);
   color: #fff;
   font-size: 3rem;
@@ -333,12 +320,8 @@ a {
   visibility: hidden;
   opacity: 0;
   &:before {
+    @include absolute(8px, 8px, 8px, 8px);
     content: "";
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    bottom: 8px;
-    left: 8px;
     display: block;
     border: 1px dashed #fff;
   }
@@ -348,11 +331,7 @@ a {
     opacity: 1;
   }
   @include e(body){
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    @include absolute(0, 0, 0, 0);
     height: 100px;
     margin: auto;
     opacity: 0;
@@ -372,9 +351,7 @@ a {
     font-size: 14px;
   }
   @include e(spinner) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    @include absolute(50%, auto, auto, 50%);
     opacity: 0;
     visibility: hidden;
     transform: translate(-50%, -50%);
@@ -392,12 +369,7 @@ a {
   $width: 600px;
   $height: 400px;
   $heading-height: 50px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 9999;
+  @include fixed(0, 0, 0, 0, 9999);
   display: block;
   opacity: 0;
   visibility: hidden;
@@ -414,19 +386,11 @@ a {
     visibility: visible;
   }
   @include e(overlay) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 0;
+    @include absolute(0, 0, 0, 0, 0);
     background: rgba(0, 0, 0, .5);
   }
   @include e(content) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 10;
+    @include absolute(50%, auto, auto, 50%, 10);
     width: $width;
     height: $height;
     max-height: 100%;
@@ -547,10 +511,8 @@ a {
   animation: spin .5s infinite linear;
   &:before,
   &:after {
+    @include absolute(-2px, auto, auto, -2px);
     content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
     display: none;
     width: inherit;
     height: inherit;
