@@ -3069,6 +3069,68 @@ th {
   content: "\e600";
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100%;
+  background: #263238;
+  font-size: 14px;
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  min-width: 320px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #d9d9d9;
+}
+
+a:active {
+  color: #bfbfbf;
+}
+
+::selection {
+  background: #006064;
+}
+
+::-moz-selection {
+  background: #006064;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  color: #c5c8c6;
+  background: #191b1e;
+  z-index: 10;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #0e0f10;
+}
+
 /**
  * React Select
  * ============
@@ -3454,104 +3516,6 @@ th {
   }
 }
 
-.clearfix {
-  zoom: 1;
-}
-
-.clearfix:after {
-  content: "";
-  clear: both;
-  display: block;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-body,
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  width: 100%;
-  height: 100%;
-  background: #263238;
-  font-size: 14px;
-  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-}
-
-body {
-  min-width: 320px;
-}
-
-a {
-  color: #fff;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #d9d9d9;
-}
-
-a:active {
-  color: #bfbfbf;
-}
-
-::selection {
-  background: #006064;
-}
-
-::-moz-selection {
-  background: #006064;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-  color: #c5c8c6;
-  background: #191b1e;
-  z-index: 10;
-}
-
-::-webkit-scrollbar:horizontal {
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  background: #0e0f10;
-}
-
-#app {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.container {
-  position: relative;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-  min-width: 960px;
-  height: 100%;
-  padding-bottom: 50px;
-}
-
-.container__row {
-  display: table-row;
-  width: 100%;
-}
-
-.container__col {
-  display: table-cell;
-  width: 50%;
-}
-
 .btn {
   display: inline-block;
   margin: 0;
@@ -3583,180 +3547,24 @@ a:active {
   background: #002f31;
 }
 
-.editor-header {
-  height: 40px;
-  background: #2a373e;
-  color: #fff;
-}
-
-.editor-header__title, .editor-header__title--brand {
-  float: left;
-  margin: 0;
-  padding: 0 25px;
-  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.2rem;
-  font-weight: bold;
-  line-height: 40px;
-}
-
-.editor-header__title--brand {
-  padding: 0;
-  font-family: "Courgette", cursive;
-  font-size: 1.6rem;
-  letter-spacing: .05em;
-}
-
-.editor-header__title--brand a {
-  display: block;
-  padding: 0 25px;
-  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.editor-header__title--brand a:hover {
-  background: #1c2429;
-  color: #fff;
-}
-
-.editor-header__control {
-  float: right;
-}
-
-.editor-header__control .btn {
-  float: left;
-  display: block;
-  margin: 0 0 0 1px;
-  padding-top: 0;
-  padding-bottom: 0;
-  height: 40px;
-  line-height: 40px;
-}
-
-.editors {
-  height: 100%;
-}
-
-.editor, .editor--input, .editor--output {
-  -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: auto;
+.container {
   position: relative;
-  height: 100%;
-  font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace !important;
-  font-size: 15px !important;
-  line-height: 1.4 !important;
-}
-
-.footer {
-  position: absolute;
-  top: auto;
-  right: auto;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  display: block;
+  display: table;
+  table-layout: fixed;
   width: 100%;
-  height: 50px;
-  padding: 0 25px;
-  background: #11171a;
+  min-width: 960px;
+  height: 100%;
+  padding-bottom: 50px;
 }
 
-.footer .shares {
-  float: left;
+.container__row {
+  display: table-row;
+  width: 100%;
 }
 
-.footer .copyright {
-  float: right;
-}
-
-.shares {
-  margin: 0;
-  padding: 5px 0 0 0;
-  font-size: 0;
-}
-
-.shares__item, .shares__item--twitter, .shares__item--facebook, .shares__item--hatena, .shares__item--pocket, .shares__item--github {
-  position: relative;
-  display: inline-block;
-  margin: 0 5px 0 0;
-  list-style: none;
-  font-size: 1.4rem;
-}
-
-.shares__item--twitter .shares__link:hover {
-  color: #00aced;
-}
-
-.shares__item--facebook .shares__link:hover {
-  color: #305097;
-}
-
-.shares__item--hatena .shares__link:hover {
-  color: #00a4de;
-}
-
-.shares__item--pocket .shares__link:hover {
-  color: #ef4056;
-}
-
-.shares__item--github .shares__link:hover {
-  color: #4078c0;
-}
-
-.shares__link {
-  display: block;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  transition: color 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.shares__popup {
-  position: absolute;
-  top: -30px;
-  right: auto;
-  bottom: auto;
-  left: 0;
-  z-index: 10;
-  width: auto;
-  min-height: 20px;
-  padding: .6em 1.2em;
-  border-radius: 3px;
-  background: #000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-  opacity: 0;
-  visibility: hidden;
-  color: #fff;
-  font-size: .8rem;
-  text-align: center;
-  white-space: nowrap;
-  transform: translateY(5px);
-  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.shares__popup:after {
-  position: absolute;
-  top: auto;
-  right: auto;
-  bottom: -5px;
-  left: 15px;
-  z-index: auto;
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #000;
-  border-right-color: transparent;
-  border-left-color: transparent;
-  border-bottom-width: 0;
-  border-bottom-color: transparent;
-}
-
-.shares__item:hover .shares__popup, .shares__item--twitter:hover .shares__popup, .shares__item--facebook:hover .shares__popup, .shares__item--hatena:hover .shares__popup, .shares__item--pocket:hover .shares__popup, .shares__item--github:hover .shares__popup {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
+.container__col {
+  display: table-cell;
+  width: 50%;
 }
 
 .copyright {
@@ -3848,6 +3656,90 @@ a:active {
 .drop-info.is-progress .drop-info__spinner {
   opacity: 1;
   visibility: visible;
+}
+
+.editor-header {
+  height: 40px;
+  background: #2a373e;
+  color: #fff;
+}
+
+.editor-header__title, .editor-header__title--brand {
+  float: left;
+  margin: 0;
+  padding: 0 25px;
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 40px;
+}
+
+.editor-header__title--brand {
+  padding: 0;
+  font-family: "Courgette", cursive;
+  font-size: 1.6rem;
+  letter-spacing: .05em;
+}
+
+.editor-header__title--brand a {
+  display: block;
+  padding: 0 25px;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.editor-header__title--brand a:hover {
+  background: #1c2429;
+  color: #fff;
+}
+
+.editor-header__control {
+  float: right;
+}
+
+.editor-header__control .btn {
+  float: left;
+  display: block;
+  margin: 0 0 0 1px;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 40px;
+  line-height: 40px;
+}
+
+.editor, .editor--input, .editor--output {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  position: relative;
+  height: 100%;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace !important;
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+}
+
+.editors {
+  height: 100%;
+}
+
+.footer {
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 0 25px;
+  background: #11171a;
+}
+
+.footer .shares {
+  float: left;
+}
+
+.footer .copyright {
+  float: right;
 }
 
 .modal {
@@ -4006,6 +3898,98 @@ a:active {
   font-size: .9rem;
 }
 
+.shares {
+  margin: 0;
+  padding: 5px 0 0 0;
+  font-size: 0;
+}
+
+.shares__item, .shares__item--twitter, .shares__item--facebook, .shares__item--hatena, .shares__item--pocket, .shares__item--github {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px 0 0;
+  list-style: none;
+  font-size: 1.4rem;
+}
+
+.shares__item--twitter .shares__link:hover {
+  color: #00aced;
+}
+
+.shares__item--facebook .shares__link:hover {
+  color: #305097;
+}
+
+.shares__item--hatena .shares__link:hover {
+  color: #00a4de;
+}
+
+.shares__item--pocket .shares__link:hover {
+  color: #ef4056;
+}
+
+.shares__item--github .shares__link:hover {
+  color: #4078c0;
+}
+
+.shares__link {
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  transition: color 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.shares__popup {
+  position: absolute;
+  top: -30px;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  z-index: 10;
+  width: auto;
+  min-height: 20px;
+  padding: .6em 1.2em;
+  border-radius: 3px;
+  background: #000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  color: #fff;
+  font-size: .8rem;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateY(5px);
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.shares__popup:after {
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: -5px;
+  left: 15px;
+  z-index: auto;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #000;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-width: 0;
+  border-bottom-color: transparent;
+}
+
+.shares__item:hover .shares__popup, .shares__item--twitter:hover .shares__popup, .shares__item--facebook:hover .shares__popup, .shares__item--hatena:hover .shares__popup, .shares__item--pocket:hover .shares__popup, .shares__item--github:hover .shares__popup {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -4040,4 +4024,10 @@ a:active {
   height: inherit;
   border: inherit;
   border-radius: inherit;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }

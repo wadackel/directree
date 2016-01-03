@@ -1,0 +1,14 @@
+.editor {
+  @include font-smooth(false);
+  position: relative;
+  height: 100%;
+  font-family: $font-code !important;
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+  @include m(input){
+    @extend .editor;
+  }
+  @include m(output){
+    @extend .editor;
+  }
+}

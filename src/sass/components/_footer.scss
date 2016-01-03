@@ -1,0 +1,14 @@
+.footer {
+  @include absolute(auto, auto, 0, 0, 1000);
+  display: block;
+  width: 100%;
+  height: $footer-height;
+  padding: 0 25px;
+  background: darken($color-primary, 10%);
+  .shares {
+    float: left;
+  }
+  .copyright {
+    float: right;
+  }
+}

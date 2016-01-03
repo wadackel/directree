@@ -1,0 +1,26 @@
+.btn {
+  display: inline-block;
+  margin: 0;
+  padding: 1rem 2rem;
+  border: 0;
+  background: $color-accent;
+  color: #fff;
+  font-family: $font-sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  user-select: none;
+  transition: all $transition-duration $transition-easing;
+  .fa {
+    margin-right: .2em;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: darken($color-accent, 6%);
+  }
+  &:active {
+    background: darken($color-accent, 10%);
+  }
+}

@@ -1,0 +1,17 @@
+.container {
+  position: relative;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  min-width: 960px;
+  height: 100%;
+  padding-bottom: $footer-height;
+  @include e(row){
+    display: table-row;
+    width: 100%;
+  }
+  @include e(col){
+    display: table-cell;
+    width: 50%;
+  }
+}

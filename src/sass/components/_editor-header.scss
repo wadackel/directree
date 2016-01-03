@@ -1,0 +1,43 @@
+.editor-header {
+  $height: 40px;
+  height: $height;
+  background: lighten($color-primary, 2%);
+  color: #fff;
+  @include e(title) {
+    float: left;
+    margin: 0;
+    padding: 0 25px;
+    font-family: $font-sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: $height;
+    @include m(brand) {
+      @extend .editor-header__title;
+      padding: 0;
+      font-family: $font-accent;
+      font-size: 1.6rem;
+      letter-spacing: .05em;
+      a {
+        display: block;
+        padding: 0 25px;
+        transition: all $transition-duration $transition-easing;
+        &:hover {
+          background: darken($color-primary, 5%);
+          color: #fff;
+        }
+      }
+    }
+  }
+  @include e(control) {
+    float: right;
+    .btn {
+      float: left;
+      display: block;
+      margin: 0 0 0 1px;
+      padding-top: 0;
+      padding-bottom: 0;
+      height: $height;
+      line-height: $height;
+    }
+  }
+}

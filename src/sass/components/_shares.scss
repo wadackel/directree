@@ -1,0 +1,86 @@
+.shares {
+  margin: 0;
+  padding: 5px 0 0 0;
+  font-size: 0;
+  @include e(item){
+    position: relative;
+    display: inline-block;
+    margin: 0 5px 0 0;
+    list-style: none;
+    font-size: 1.4rem;
+    @include m(twitter){
+      @extend .shares__item;
+      .shares__link:hover {
+        color: $color-sns-twitter;
+      }
+    }
+    @include m(facebook){
+      @extend .shares__item;
+      .shares__link:hover {
+        color: $color-sns-facebook;
+      }
+    }
+    @include m(hatena){
+      @extend .shares__item;
+      .shares__link:hover {
+        color: $color-sns-hatena;
+      }
+    }
+    @include m(pocket){
+      @extend .shares__item;
+      .shares__link:hover {
+        color: $color-sns-pocket;
+      }
+    }
+    @include m(github){
+      @extend .shares__item;
+      .shares__link:hover {
+        color: $color-sns-github;
+      }
+    }
+  }
+  @include e(link){
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    transition: color $transition-duration $transition-easing;
+  }
+  @include e(popup){
+    @include absolute(-30px, auto, auto, 0, 10);
+    width: auto;
+    min-height: 20px;
+    padding: .6em 1.2em;
+    border-radius: 3px;
+    background: #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .7);
+    opacity: 0;
+    visibility: hidden;
+    color: #fff;
+    font-size: .8rem;
+    text-align: center;
+    white-space: nowrap;
+    transform: translateY(5px);
+    transition: all $transition-duration $transition-easing;
+    &:after {
+      @include absolute(auto, auto, -5px, 15px);
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #000;
+      border-right-color: transparent;
+      border-left-color: transparent;
+      border-bottom-width: 0;
+      border-bottom-color: transparent;
+    }
+    .shares__item:hover & {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

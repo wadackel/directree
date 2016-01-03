@@ -1,0 +1,55 @@
+.drop-info {
+  @include fixed(0, 0, 0, 0, 9999);
+  background: rgba($color-accent, .9);
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1.4;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
+  transition: all $transition-duration $transition-easing;
+  visibility: hidden;
+  opacity: 0;
+  &:before {
+    @include absolute(8px, 8px, 8px, 8px);
+    content: "";
+    display: block;
+    border: 1px dashed #fff;
+  }
+  &.is-enter,
+  &.is-progress {
+    visibility: visible;
+    opacity: 1;
+  }
+  @include e(body){
+    @include absolute(0, 0, 0, 0);
+    height: 100px;
+    margin: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: all $transition-duration $transition-easing;
+    .drop-info.is-enter & {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  @include e(title){
+    margin: 0;
+  }
+  @include e(text){
+    margin: 0;
+    color: #fff;
+    font-size: 14px;
+  }
+  @include e(spinner) {
+    @include absolute(50%, auto, auto, 50%);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -50%);
+    transition: all $transition-duration $transition-easing;
+    .drop-info.is-progress & {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
