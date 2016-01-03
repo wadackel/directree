@@ -3526,14 +3526,6 @@ a:active {
   background: #0e0f10;
 }
 
-.select {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  width: 200px;
-}
-
 #app {
   position: relative;
   width: 100%;
@@ -3771,23 +3763,34 @@ a:active {
 .drop-info {
   position: fixed;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
   z-index: 9999;
-  width: 100%;
-  height: 100%;
-  background: rgba(38, 50, 56, 0.9);
-  border: 4px solid #006064;
-  color: #006064;
-  font-size: 60px;
+  background: rgba(0, 96, 100, 0.9);
+  color: #fff;
+  font-size: 3rem;
   font-weight: bold;
   line-height: 1.4;
   text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
   transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
   visibility: hidden;
   opacity: 0;
 }
 
-body.is-enter .drop-info {
+.drop-info:before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  display: block;
+  border: 1px dashed #fff;
+}
+
+.drop-info.is-enter, .drop-info.is-progress {
   visibility: visible;
   opacity: 1;
 }
@@ -3798,8 +3801,16 @@ body.is-enter .drop-info {
   right: 0;
   bottom: 0;
   left: 0;
-  height: 150px;
+  height: 100px;
   margin: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.drop-info.is-enter .drop-info__body {
+  opacity: 1;
+  visibility: visible;
 }
 
 .drop-info__title {
@@ -3810,6 +3821,21 @@ body.is-enter .drop-info {
   margin: 0;
   color: #fff;
   font-size: 14px;
+}
+
+.drop-info__spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%);
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.drop-info.is-progress .drop-info__spinner {
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal {
@@ -3964,4 +3990,37 @@ body.is-enter .drop-info {
 .modal__body ._help {
   margin: .4em 0 1em 0;
   font-size: .9rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-width: 0 2px 2px 2px;
+  border-style: solid;
+  border-color: #fff;
+  border-radius: 50%;
+  animation: spin .5s infinite linear;
+}
+
+.spinner:before, .spinner:after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  display: none;
+  width: inherit;
+  height: inherit;
+  border: inherit;
+  border-radius: inherit;
 }
