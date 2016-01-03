@@ -3,12 +3,14 @@ Directree
 
 Indent text to Tree text.
 
-[see playground](http://directree.net/)
+[WebSite](http://directree.net/)
 
 
-## Screenshot
+## Screenshots
 
 ![image](https://raw.githubusercontent.com/tsuyoshiwada/directree/images/image.png)
+![drop](https://raw.githubusercontent.com/tsuyoshiwada/directree/images/drop.png)
+![parse](https://raw.githubusercontent.com/tsuyoshiwada/directree/images/parse.png)
 
 
 ## Development
@@ -17,13 +19,7 @@ Indent text to Tree text.
 $ git clone https://github.com/tsuyoshiwada/directree.git
 $ cd directree
 $ npm install
-$ gulp
+$ npm start
 ```
 
 access to [http://localhost:3000](http://localhost:3000).
-
-
-## Change log
-
-### v0.0.1
-Release at first.
