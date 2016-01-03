@@ -143,7 +143,20 @@ export default class App extends Component {
         </div>
 
         <Modal title="About" icon="info-circle" isOpen={isAboutOpen} onRequestClose={::this.closeAboutModal}>
-          @TODO
+          <dl>
+            <dt>Directreeについて</dt>
+            <dd>
+              インデントで階層を表現したテキストを、罫線で見やすく整形するWebツールです。<br />
+              主にディレクトリの階層を表現するために使用します。<br />
+              treeコマンドが使えない環境や、ちょっとブログに貼り付けたい時にお使いいただけると嬉しいです。
+            </dd>
+            <dt>便利な使い方</dt>
+            <dd>
+              画面内にフォルダをドラッグ&amp;ドロップすることで、簡単に階層を可視化することができます。<br />
+              フォルダから除外したファイルパターンがある場合は、Settingからパスのパターンを指定ます。<br />
+              この機能はGoogle Chromeでのみ動作します。
+            </dd>
+          </dl>
         </Modal>
 
         <Modal title="Setting" icon="cog" isOpen={isSettingOpen} onRequestClose={::this.closeSettingModal}>
