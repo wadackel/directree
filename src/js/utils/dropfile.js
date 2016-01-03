@@ -9,6 +9,8 @@ const ignoreOptions = {
 export default class Dropfile extends EventEmitter {
   static Event = {
     DROP_START: "DROP_START",
+    DROP_ENTER: "DROP_ENTER",
+    DROP_LEAVE: "DROP_LEAVE",
     DROP_END: "DROP_END",
     DROP_ERROR: "DROP_ERROR"
   }
@@ -43,19 +45,19 @@ export default class Dropfile extends EventEmitter {
     if (this.isDragOver) {
       this.isDragOver = false;
     } else {
-      this.el.classList.remove("is-enter");
+      this.emit(Dropfile.Event.DROP_LEAVE);
     }
   }
 
   handleDragOver(e) {
     this.cancelEvent(e);
     this.isDragOver = false;
-    this.el.classList.add("is-enter");
+    this.emit(Dropfile.Event.DROP_ENTER);
   }
 
   handleDrop(e) {
     this.cancelEvent(e);
-    this.el.classList.remove("is-enter");
+    this.emit(Dropfile.Event.DROP_LEAVE);
     const {items} = e.dataTransfer;
 
     if (!items) return alert("お使いのブラウザではディレクトリのドロップをサポートしていません。ブラウザをChromeに変えて再度お試し下さい。");

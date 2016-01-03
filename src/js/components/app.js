@@ -5,6 +5,7 @@ import Clipboard from "clipboard"
 import Modal from "./modal"
 import Footer from "./footer"
 import Editor from "./editor"
+import DropInfo from "./drop-info"
 import Dropfile from "../utils/dropfile"
 import sleep from "../utils/sleep"
 import * as tabSizes from "../constants/tab-sizes"
@@ -16,7 +17,9 @@ export default class App extends Component {
     this.state = {
       scrollTop: 0,
       isSettingOpen: false,
-      isAboutOpen: false
+      isAboutOpen: false,
+      isDropEnter: false,
+      isDropProgress: false
     };
   }
 
@@ -25,6 +28,8 @@ export default class App extends Component {
 
     this.dropFile = new Dropfile(document.body);
     this.dropFile.on(Dropfile.Event.DROP_START, ::this.handleDropStart);
+    this.dropFile.on(Dropfile.Event.DROP_ENTER, ::this.handleDropEnter);
+    this.dropFile.on(Dropfile.Event.DROP_LEAVE, ::this.handleDropLeave);
     this.dropFile.on(Dropfile.Event.DROP_END, ::this.handleDropEnd);
 
     this.clipboard = new Clipboard(this.refs.btnCopy, {
@@ -41,11 +46,20 @@ export default class App extends Component {
   }
 
   handleDropStart(entry) {
-    console.log("START", entry.name);
+    this.setState({isDropProgress: true});
+  }
+
+  handleDropEnter() {
+    this.setState({isDropEnter: true});
+  }
+
+  handleDropLeave() {
+    this.setState({isDropEnter: false});
   }
 
   handleDropEnd(node) {
     this.props.changeInput(node.toIndentString());
+    this.setState({isDropProgress: false});
   }
 
   handleScroll(scrollTop) {
@@ -87,7 +101,9 @@ export default class App extends Component {
 
     const {
       isSettingOpen,
-      isAboutOpen
+      isAboutOpen,
+      isDropEnter,
+      isDropProgress
     } = this.state;
 
     const {
@@ -198,6 +214,7 @@ export default class App extends Component {
         </Modal>
 
         <Footer />
+        <DropInfo isEnter={isDropEnter} isProgress={isDropProgress} />
       </div>
     );
   }
