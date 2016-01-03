@@ -38,6 +38,7 @@ export default class App extends Component {
       }
     });
     this.clipboard.on("success", ::this.handleClipboardSuccess);
+    this.clipboard.on("error", ::this.handleClipboardError);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,12 +67,20 @@ export default class App extends Component {
     this.setState({scrollTop});
   }
 
-  handleClipboardSuccess(e) {
+  handleClipboardSuccess() {
+    this.flashBtnCopyText("Copied!!");
+  }
+
+  handleClipboardError() {
+    this.flashBtnCopyText("Error");
+  }
+
+  flashBtnCopyText(msg, timeout = 1500) {
     const {btnCopyText} = this.refs;
-    btnCopyText.innerHTML = "Copied!!";
+    btnCopyText.innerHTML = msg;
     setTimeout(() => {
       btnCopyText.innerHTML = "Copy";
-    }, 1000);
+    }, timeout);
   }
 
   openSettingModal() {
