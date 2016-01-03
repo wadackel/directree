@@ -14,8 +14,9 @@ import * as outputStyles from "../constants/output-styles"
 export default class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      scrollTop: 0,
+      scrollPer: {top: 0, left: 0},
       isSettingOpen: false,
       isAboutOpen: false,
       isDropEnter: false,
@@ -63,8 +64,8 @@ export default class App extends Component {
     this.setState({isDropProgress: false});
   }
 
-  handleScroll(scrollTop) {
-    this.setState({scrollTop});
+  handleScroll(direction, scroll, scrollPer) {
+    this.setState({scrollPer});
   }
 
   handleClipboardSuccess() {
@@ -109,6 +110,7 @@ export default class App extends Component {
     } = this.props;
 
     const {
+      scrollPer,
       isSettingOpen,
       isAboutOpen,
       isDropEnter,
@@ -158,7 +160,7 @@ export default class App extends Component {
             value={input}
             tabSize={tabSize}
             readOnly={false}
-            scrollTop={this.state.scrollTop}
+            scrollPer={scrollPer}
             onChange={value => changeInput(value)}
             onScroll={::this.handleScroll} />
           <Editor
@@ -167,7 +169,7 @@ export default class App extends Component {
             value={output}
             tabSize={tabSize}
             readOnly={true}
-            scrollTop={this.state.scrollTop}
+            scrollPer={scrollPer}
             onScroll={::this.handleScroll} />
         </div>
 
