@@ -1,8 +1,8 @@
 {
   "name": "directree",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Directreeはインデントで表した階層をツリー状に変換するWebアプリです",
-  "main": "index.js",
+  "main": "src/js/index.js",
   "scripts": {
     "start": "npm run server & npm run watch",
     "server": "browser-sync start --server --files '*.html, js/**/*.js, css/**/*.css' --no-open --no-notify",
