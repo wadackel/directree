@@ -53,7 +53,11 @@ export default class App extends Component {
   }
 
   handleClipboardSuccess(e) {
-    console.log(e);
+    const {btnCopyText} = this.refs;
+    btnCopyText.innerHTML = "Copied!!";
+    setTimeout(() => {
+      btnCopyText.innerHTML = "Copy";
+    }, 1000);
   }
 
   openSettingModal() {
@@ -110,7 +114,7 @@ export default class App extends Component {
           <div className="editor-header container__col">
             <h2 className="editor-header__title">Output</h2>
             <div className="editor-header__control">
-              <button className="btn" ref="btnCopy"><i className="fa fa-clipboard"></i> Copy</button>
+              <button className="btn" ref="btnCopy"><i className="fa fa-clipboard"></i> <span ref="btnCopyText">Copy</span></button>
               <a
                 className="btn"
                 download={fileName}
