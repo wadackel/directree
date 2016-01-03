@@ -6,8 +6,15 @@ import reducers from "../reducers"
 const logger = createLogger();
 
 export default function configureStore(initialState) {
-  return applyMiddleware(
-    thunk,
-    logger
-  )(createStore)(reducers);
+  if (process.env.NODE_ENV === "production") {
+    return applyMiddleware(
+      thunk
+    )(createStore)(reducers);
+
+  } else {
+    return applyMiddleware(
+      thunk,
+      logger
+    )(createStore)(reducers);
+  }
 }
