@@ -1,6 +1,6 @@
 .modal {
   $width: 600px;
-  $height: 400px;
+  $height: 500px;
   $heading-height: 50px;
   @include fixed(0, 0, 0, 0, 9999);
   display: block;
