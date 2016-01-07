@@ -16,7 +16,7 @@ const initialState = {
   tabSize: tabSizes.SPACE2,
   outputStyle: outputStyles.TYPE_TEXT,
   outputBlob: null,
-  ignorePattern: "**/*.DS_Store",
+  ignorePattern: "**/*.DS_Store, **/.git",
   limit: 0
 };
 
