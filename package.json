@@ -25,6 +25,7 @@
     "browser-sync": "^2.10.1",
     "browserify": "^12.0.1",
     "envify": "^3.4.0",
+    "node-sass": "^3.4.2",
     "uglify-js": "^2.6.1",
     "watchify": "^3.6.1"
   },
