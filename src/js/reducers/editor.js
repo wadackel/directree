@@ -16,7 +16,8 @@ const initialState = {
   tabSize: tabSizes.SPACE2,
   outputStyle: outputStyles.TYPE_TEXT,
   outputBlob: null,
-  ignorePattern: "**/*.DS_Store"
+  ignorePattern: "**/*.DS_Store",
+  limit: 0
 };
 
 
@@ -52,6 +53,7 @@ export default function editor(state = initialState, action) {
       if (action.tabSize) tmpState.tabSize = action.tabSize;
       if (action.outputStyle) tmpState.outputStyle = action.outputStyle;
       if (action.ignorePattern) tmpState.ignorePattern = action.ignorePattern;
+      if (action.limit) tmpState.limit = action.limit;
       tmpState = Object.assign({}, state, tmpState);
       tmpState.output = createOutputValue(tmpState.input, tmpState.outputStyle, tmpState.tabSize);
       tmpState.outputBlob = createObjectURL(tmpState.output, tmpState.outputStyle);
@@ -78,6 +80,11 @@ export default function editor(state = initialState, action) {
     case types.EDITOR_CHANGE_IGNORE_PATTERN:
       return Object.assign({}, state, {
         ignorePattern: action.ignorePattern
+      });
+
+    case types.EDITOR_CHANGE_LIMIT:
+      return Object.assign({}, state, {
+        limit: action.limit
       });
 
     default:

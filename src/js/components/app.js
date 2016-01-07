@@ -43,8 +43,9 @@ export default class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {editor: {ignorePattern}} = nextProps;
+    const {editor: {ignorePattern, limit}} = nextProps;
     this.dropFile.ignorePattern = ignorePattern;
+    this.dropFile.limit = limit || 0;
   }
 
   handleDropStart(entry) {
@@ -106,6 +107,7 @@ export default class App extends Component {
       changeOutputStyle,
       changeTabSize,
       changeIgnorePattern,
+      changeLimit,
       editor
     } = this.props;
 
@@ -123,7 +125,8 @@ export default class App extends Component {
       outputBlob,
       tabSize,
       outputStyle,
-      ignorePattern
+      ignorePattern,
+      limit
     } = editor;
 
     const fileName = `directree.${outputStyles.extensions[outputStyle]}`;
@@ -220,6 +223,16 @@ export default class App extends Component {
                 onChange={e => changeIgnorePattern(e.target.value.trim())}
                 placeholder="**/*.DS_Store" />
               <p className="_help">フォルダをドロップした際に除外したいファイルのパターンを指定します。</p>
+            </dd>
+            <dt>階層制限</dt>
+            <dd>
+              <input
+                type="number"
+                pattern="[0-9]*"
+                value={limit}
+                onChange={e => changeLimit(e.target.value.trim())}
+                placeholder="0" />
+              <p className="_help">掘り下げる階層の深さを指定します。全てのディレクトリを出力する場合は0を指定します。</p>
             </dd>
           </dl>
         </Modal>

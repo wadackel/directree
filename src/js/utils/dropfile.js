@@ -15,11 +15,12 @@ export default class Dropfile extends EventEmitter {
     DROP_ERROR: "DROP_ERROR"
   };
 
-  constructor(el, ignorePattern) {
+  constructor(el, ignorePattern, limit) {
     super();
     this.el = el;
     this.isDragOver = false;
     this.ignorePattern = ignorePattern;
+    this.limit = limit;
     this.bindEvents();
   }
 
@@ -90,12 +91,16 @@ export default class Dropfile extends EventEmitter {
 
   entryToNode(entry) {
     const node = new Node(entry.name);
+    const depth = entry.fullPath.slice(1).split("/").length;
 
     return new Promise((resolve, reject) => {
       if (entry.isFile) {
         return resolve(this.entryPathMatch(entry) ? null : node);
       }
+
       if (!entry.isDirectory) return reject();
+      if (this.limit > 0 && this.limit < depth) return resolve(node);
+
       entry.createReader().readEntries(results => {
         if (results.length === 0) return resolve(node);
         let i = 0;
