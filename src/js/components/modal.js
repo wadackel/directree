@@ -9,12 +9,12 @@ export default class Modal extends Component {
     icon: PropTypes.string.isRequired,
     isOpen: PropTypes.bool,
     onRequestClose: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     className: "",
     isOpen: false
-  }
+  };
 
   constructor(props) {
     super(props);

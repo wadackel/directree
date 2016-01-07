@@ -13,7 +13,7 @@ export default class Dropfile extends EventEmitter {
     DROP_LEAVE: "DROP_LEAVE",
     DROP_END: "DROP_END",
     DROP_ERROR: "DROP_ERROR"
-  }
+  };
 
   constructor(el, ignorePattern) {
     super();

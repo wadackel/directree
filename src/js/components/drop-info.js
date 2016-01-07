@@ -4,12 +4,12 @@ import Spinner from "./spinner"
 export default class DropInfo extends Component {
   static propTypes = {
     isShow: PropTypes.bool
-  }
+  };
 
   static defaultProps = {
     isEnter: false,
     isProgress: false
-  }
+  };
 
   constructor(props) {
     super(props);

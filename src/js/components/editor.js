@@ -23,7 +23,7 @@ export default class Editor extends Component {
     }),
     onChange: PropTypes.func,
     onScroll: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     name: "ace-editor",
@@ -31,7 +31,7 @@ export default class Editor extends Component {
     value: "",
     tabSize: 2,
     readOnly: true
-  }
+  };
 
   componentDidMount() {
     const {
