@@ -221,6 +221,13 @@ export default class App extends Component {
                 placeholder="**/*.DS_Store" />
               <p className="_help">フォルダをドロップした際に除外したいファイルのパターンを指定します。</p>
             </dd>
+            <dt>階層制限</dt>
+            <dd>
+              <input
+                type="text"
+                placeholder="0" />
+              <p className="_help">掘り下げる階層の深さを指定します。全てのディレクトリを出力する場合は0を指定します。</p>
+            </dd>
           </dl>
         </Modal>
 
