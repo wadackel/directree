@@ -32,7 +32,7 @@ export default class Shares extends Component {
       <ul className="shares">
         <li className="shares__item--twitter">
           <a className="shares__link"
-            href={`http://twitter.com/intent/tweet?text=${ENCODE_TITLE}&amp;url=${ENCODE_URL}`}
+            href={`http://twitter.com/intent/tweet?text=${ENCODE_TITLE}%0a${Constants.APP_URL}`}
             onClick={::this.handleTwitterClick}
             target="_blank"><i className="fa fa-twitter"></i>
           </a>
@@ -47,14 +47,14 @@ export default class Shares extends Component {
         </li>
         <li className="shares__item--hatena">
           <a className="shares__link"
-            href={`http://b.hatena.ne.jp/add?mode=confirm&amp;url=${ENCODE_URL}&amp;title=${ENCODE_TITLE}`}
+            href={`http://b.hatena.ne.jp/add?mode=confirm&amp;url=${Constants.APP_URL}&title=${ENCODE_TITLE}`}
             onClick={::this.handleHatenaClick}><i className="icon-hatena"></i>
           </a>
           <div className="shares__popup">Bookmark!</div>
         </li>
         <li className="shares__item--pocket">
           <a className="shares__link"
-            href={`http://getpocket.com/edit?url=${ENCODE_URL}&amp;title=${ENCODE_TITLE}`}
+            href={`http://getpocket.com/edit?url=${ENCODE_URL}&title=${ENCODE_TITLE}`}
             onClick={::this.handlePocketClick}><i className="fa fa-get-pocket"></i>
           </a>
           <div className="shares__popup">Save!</div>
