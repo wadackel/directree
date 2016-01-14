@@ -1,6 +1,6 @@
 {
   "name": "directree",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Directreeはインデントで表した階層をツリー状に変換するWebアプリです",
   "main": "src/js/index.js",
   "scripts": {
