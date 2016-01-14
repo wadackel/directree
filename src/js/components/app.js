@@ -135,7 +135,7 @@ export default class App extends Component {
       <div className="container">
         <div className="container__row">
           <div className="editor-header container__col">
-            <h1 className="editor-header__title--brand"><a href="./">Directree</a></h1>
+            <h1 className="editor-header__title--brand"><a href="./"><img src="./images/logo.png" />Directree</a></h1>
             <div className="editor-header__control">
               <button className="btn" onClick={::this.openAboutModal}><i className="fa fa-info-circle"></i> About</button>
               <button className="btn" onClick={::this.openSettingModal}><i className="fa fa-cog"></i> Setting</button>

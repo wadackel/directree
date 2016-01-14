@@ -26,6 +26,12 @@
           color: #fff;
         }
       }
+      img {
+        position: relative;
+        top: -2px;
+        margin-right: 5px;
+        vertical-align: middle;
+      }
     }
   }
   @include e(control) {
